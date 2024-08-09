@@ -1,27 +1,13 @@
 import React,{ useState } from 'react'
 import './NavBar.css'
 import { Link } from 'react-router-dom'
+import account from '../assets/User-1.png'
+import cart from '../assets/cart.png'
 
 const NavBar = () => {
   const [menu,setMenu] =useState("shop");
   
-  
 
-  
-/* ----------------- Nagushishikariza gukuraho zino shii ziri munsi -------------------------------
-
-const [hoveredLink, setHoveredLink] = useState(null);
-
-  const handleMouseEnter = (linkName) => {
-    setHoveredLink(linkName);
-  };
-
-  const handleMouseLeave = () => {
-    setHoveredLink(null);
-  };
-
-  */
- 
 
   return (
     <div className='navbar'>
@@ -32,27 +18,26 @@ const [hoveredLink, setHoveredLink] = useState(null);
 
        <ul className='nav-links'>
           <li onClick={()=>{setMenu("shop")}}>
-            <Link className={`a Home ${menu === "shop" ? "active" : ""}`} to='/'> Home </Link>
+            <Link className={`a  ${menu === "shop" ? "active" : ""}`} to='/'> Home </Link>
           </li>
   
           <li onClick={()=>{setMenu("about")}}>
-            <Link className={`a About ${menu === "about" ? "active" : ""}`} to='/about'> About </Link>
+            <Link className={`a  ${menu === "about" ? "active" : ""}`} to='/about'> About </Link>
             </li>
     
           <li onClick={()=>{setMenu("started")}}>
-            <Link className={`a Started ${menu === "started" ? "active" : ""}`} to='/started'> Get Started </Link>
+            <Link className={`a  ${menu === "started" ? "active" : ""}`} to='/started'> Get Started </Link>
             </li>
 
           <li onClick={()=>{setMenu("contact")}}>
-            <Link className={`a Contact ${menu === "contact" ? "active" : ""}`} to='/contact'> Contact </Link>
+            <Link className={`a  ${menu === "contact" ? "active" : ""}`} to='/contact'> Contact </Link>
           </li>
        </ul>
 
        
         <div className='login-cart'>
-             <Link to='/cart'><i></i> </Link>
-             <Link to='/login'><i></i></Link>
-             <i className="fa-solid fa-user"></i>
+             <Link to='/'><img src={cart} width={30} alt="" className='cart-icon'/></Link>
+             <Link to='/login'><img src={account} width={30} alt="" className='login-icon' /></Link> 
         </div>
     </div>
   )

@@ -1,0 +1,76 @@
+.footer{
+    width:100vw;
+    height:30vh;
+    background-color: black;
+    color: white;
+}
+.left-footer{
+    display: flex;
+    align-items: center;
+    margin-top:1rem;
+    margin-left:3rem;
+    gap:7rem;
+    
+}
+.talk{
+    margin-top:1rem;
+    justify-content: center;
+    margin-left: 1rem;
+    cursor: pointer;
+}
+.first{
+    display: flex;
+    justify-content: center;
+    gap:1rem;
+    padding-bottom:1rem;
+}
+.first> #userName,#userEmail{
+    background-color: black;
+    /* color: rgb(0, 0, 0); */
+    border:none;
+    border-bottom: solid 1px white;
+    padding-bottom:5px;
+    outline:none;
+    
+}
+input[type="email"],
+input[type="text"]{
+    font-size: 16px;
+    color: #ffffff;
+    padding: 5px;
+    outline: none;
+  }
+  
+  input[type="email"],
+  input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.859);
+}
+input[type="email"]::placeholder,
+input[type="text"]::placeholder,
+input[name="name"]::placeholder {
+    color:white;
+    background-color:black;
+}
+textarea{
+    border:none;
+    background-color: black;
+    outline:none;
+    color: white;
+}
+form .submit{
+    align-items: center;
+    padding:3px 10px;
+    font-size:15px;
+    margin-top:20px;
+    cursor: pointer;
+    margin-left:4rem;
+    background-color: rgba(8, 8, 8, 0.516);
+    border: none;
+    border-radius:6px;
+    color:rgb(255, 255, 255);
+  }
+  form .submit:hover{
+    background-color: rgba(255, 255, 255, 0.627);
+    color:black;
+  }
