@@ -1,0 +1,69 @@
+.breadcrum{
+    padding-top:5rem;
+    display: flex;
+    align-items: center;
+    gap:8px;
+    color: #5e5e5e;
+    font-size:16px;
+    font-weight:600;
+    margin:0px 10px;
+    text-transform:capitalize;
+}
+.productdisplay-right{
+    margin:0px 70px;
+    display: flex;
+    flex-direction: column;
+}
+.productdisplay-right h1{
+    color:#656565;
+    font-size:20px;
+    font-weight:700;
+}
+.productdisplay-right-price{
+    display:flex;
+    /* margin:40px 0px; */
+    gap:30px;
+    font-size:24px;
+    font-weight:700;
+}
+.productdisplay-price{
+ color:#818181;
+}
+.productdisplay-right-size{
+    margin-top:55px;
+    color: #656565;
+    font-size:20px;
+    font-weight:600;
+}
+.productdisplay-right-sizes{
+    display: flex;
+    align-items: center;
+    margin:30px 0px;
+    gap:20px;
+}
+.productdisplay-right-sizes div{
+    padding:18px 24px;
+    background: #fbfbfb;;
+    border:1px solid #65656535;
+    border-radius:10px;
+    cursor:pointer;
+}
+.productdisplay-right button{
+    padding:20px 40px;
+    width: 200px;
+    font-size:16px;
+    font-weight:600;
+    color:white;
+    background-color:black;
+    margin-bottom:40px;
+    border:none;
+    border-radius:5px;
+    outline:none;
+    cursor: pointer;
+}
+.productdisplay-right-category{
+    margin-top:10px;
+}
+.productdisplay-right-category span{
+    font-weight:600;
+}

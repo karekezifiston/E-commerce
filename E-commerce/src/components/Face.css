@@ -96,6 +96,24 @@
 }
 .social-media{
  margin-left:2rem;
+ display: flex;
+ align-items: center;
+ gap:13px;
+}
+.social-media >p{
+    font-size:14px;
+    /* font-weight:bold; */
+}
+.bj {
+color: black;
+width: 15px;
+height: 15px;
+margin-top:7px;
+margin-left:10px;
+}
+.bj:hover{
+    color: rgb(109, 96, 96);
+    transform: scale(1.1);
 }
 .Sroll{
     align-items: end;
@@ -104,6 +122,8 @@
 .scroll-link{
     text-decoration:none;
     color:black;
+    display: flex;
+    align-items: center;
 }
 .scroll-link:hover{
     color:rgb(122, 122, 122);

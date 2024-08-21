@@ -1,0 +1,25 @@
+.our-story{
+  padding-top:6rem;
+
+}
+.paragraph{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+}
+.paragraph h1{
+    color:#252525;
+}
+.paragraph hr{
+    width:170px;
+    height:2px;
+    border-radius:10px;
+    background:#252525ad;
+}
+.paragraph p{
+    margin-top:10px;
+    width:600px;
+    font-size:13px;
+    padding-bottom:5rem;
+    font-style: italic;
+}

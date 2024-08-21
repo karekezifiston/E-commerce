@@ -1,61 +1,43 @@
-import React, { useState } from 'react';
-import emailjs from '@emailjs/browser'
+import React from 'react'
 import './Footer.css'
+import location from '../assets/location.png'
+import airtel from '../assets/airtel.png'
+import mtn from '../assets/mtn.png'
+import visa from '../assets/visa.png'
+import mastercard from '../assets/mastercard.png'
 
 const Footer = () => {
-  const [formData, setFormData] = useState({
-    userName: '',
-    userEmail: '',
-    userMessage: '',});
-
-    const handleChange = (e) => {
-       const { name, value } = e.target;
-       setFormData((prevData) => ({
-         ...prevData,
-         [name]: value,
-       }));
-     };
-
-     const handleSubmit = (e) => {
-       e.preventDefault();
-   
-       const serviceID = 'karekezi';
-       const templateID = 'template_ii04bkd';
-       const userID = '8C7imFdyzAIyRuYDD';
-   
-       emailjs.send(serviceID, templateID, formData, userID)
-         .then((response) => {
-           console.log('SUCCESS!', response.status, response.text);
-           alert('Message sent successfully!');
-           setFormData({ userName: '', userEmail: '', userMessage: '' });
-         })
-         .catch((error) => {
-           console.error('FAILED...', error);
-           alert('Failed to send message. Please try again.');
-         });
-     };
   return (
-    <div className='footer'>
-      <div className='footers'>
-      <div className='left-footer'>
-        <h1>let's <br />talk here</h1>
-         <div className='talk'>
-         <form onSubmit={handleSubmit}>
-         <div className="first">
-         <input type="text" name="userName"id='userName' value={formData.userName} placeholder="Your Name"onChange={handleChange} required />
-         <input type="email" name="userEmail"id='userEmail' value={formData.userEmail} placeholder="Your Email"onChange={handleChange} required />
-
-         </div>
-         <div className="text-area">
-         <textarea name="userMessage"id='userMessage' value={formData.userMessage} rows="6" placeholder="Message"onChange={handleChange}></textarea>
-         </div>
-         <button type="submit" className="submit">Send Message</button>
-         </form>
-         </div>
+    <div className='footer' id='footer'>
+      <div className='ways'>
+        <div className='first-way'>
+        <div className='logo'>
+          <img src="" alt="" />
+           <h1>Saints Shop</h1>
+       </div>
+        </div>
+        <div className='second-way'>
+          <img src={location} alt="" />
+          <div className='second'>
+            <p>KN 27 St, Nyarugenge,</p>
+            <p>Kigali, Rwanda</p>
+          </div>
+        </div>
+        <div className='third-way'>
+          <a href="">karekezifiston30@gmail.com</a>
+          <a href="">+250 780 377 645</a>
+        </div>
       </div>
-      <div className='right-footer'></div>
+      {/* <hr  className='hrr'/> */}
+      <div className='other-ways'>
+        <p>&copy; Saints 2024 All rights reserved</p>
+        <div className='footer-photos'>
+          <img src={airtel} width={25} alt="" />
+          <img src={mtn} width={25} alt="" />
+          <img src={visa} width={25} alt="" />
+          <img src={mastercard} width={25} alt="" />
+        </div>
       </div>
-        
       
     </div>
   )

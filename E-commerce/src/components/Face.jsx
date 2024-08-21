@@ -1,6 +1,8 @@
 import React from 'react'
 import './Face.css'
 import image from '../assets/back.png'
+import down from '../assets/down.png'
+import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Face = () => {
   return (
@@ -23,14 +25,19 @@ const Face = () => {
       <div className='face-footer'>
       <div className="social-media">
         <p>Follow us</p>
-        <div>
-          
+        <div className='scial-medias'>
+        <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <FaInstagram size={24} className='bj'/>
+      </a>
+      <a href="https://www.linkedin.com/in/fiston-karekezi-50299726b/" target="_blank" rel="noopener noreferrer">
+        <FaLinkedinIn size={24} className='bj' />
+      </a>
         </div>
       </div>
       <div className='Sroll'>
        <a className='scroll-link' href="#hero">
-       <p>scroll</p>
-       <img src="" alt="" />
+       {/* <p>scroll</p> */}
+       <img src={down} width={40} alt="" />
        </a>
      </div>
       </div>
