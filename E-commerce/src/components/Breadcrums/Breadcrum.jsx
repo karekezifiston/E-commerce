@@ -10,4 +10,4 @@ const Breadcrums = (props) => {
   )
 }
 
-export default Breadcrums;
+export default Breadcrums;;
