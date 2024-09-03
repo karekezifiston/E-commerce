@@ -193,3 +193,139 @@
 }
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*------------------------------ Hamburger options ------------------------------- */
+/*------------------------------ Hamburger options ------------------------------- */
+/*------------------------------ Hamburger options ------------------------------- */
+
+
+
+.hamburger_container, 
+.Mobile_panel {
+    display: none;
+}
+
+
+@media (max-width: 768px) {
+
+    .hamburger_container {
+        display: flex;
+        align-items: center;
+        z-index: 100;
+    }
+
+
+    .hamburger {
+        position: relative;
+        display: block;
+        width: 35px;
+        cursor: pointer;
+        appearance: none;
+        background: none;
+        outline: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+    }
+
+
+    .hamburger .bar, .hamburger:after, .hamburger:before {
+        box-sizing: content-box;
+        content: '';
+        display: block;
+        width: 25px;
+        height: 2px;
+        background-color: #3a3a3a;
+        margin: 5px 0px;
+        transition: 0.4s;
+        z-index: 999;
+        overflow-x: hidden;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #00000000;
+        border-radius: 5px;
+    }    
+
+
+
+    .hamburger.is-active:before {
+        transform: rotate(-45deg) translate(-8px, 6px);
+    }
+
+    .hamburger.is-active:after {
+        transform: rotate(45deg) translate(-7px, -4px);
+    }
+
+    .hamburger.is-active .bar {
+        opacity: 0;
+    }
+
+    .Mobile_panel {
+        opacity: 0;
+        height: 1200px;
+        width: 100vh;
+        display: flex;
+        align-items: flex-end;
+        margin: 0 auto;
+        position: fixed;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+
+    .Mobile_panel.is-active {
+        opacity: 1;
+    }
+
+    .menu-items {
+        background-color: rgb(238, 238, 238);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 45%;
+        width: 52%;
+        border-radius: 5px;
+    }
+
+    .menu-option {
+        font-weight: 100;
+        margin-bottom: 25px;
+    }
+
+}
+
+
+
