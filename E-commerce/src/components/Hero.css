@@ -3,6 +3,11 @@
     height:40vh;
     padding-top:1.8rem;
 }
+.twoss{
+    display: flex;
+    align-items: center;
+    gap:1px;
+}
 .slider-container{
     padding-top:3rem;
     cursor: pointer;
@@ -43,6 +48,13 @@
     width:10vw;
     height:26vh;
     margin-left:2rem;
+}
+.yyy{
+    width:11vw;
+    height:11vw;
+}
+.yy:hover,.yyy:hover{
+    
 }
 
 .section-one {
@@ -109,4 +121,8 @@
 }
 .slick-slider{
     padding-left:27px;
+}
+.fg{
+    margin-right:1rem;
+    margin-top:15rem;
 }

@@ -17,6 +17,7 @@
     font-size:18px;
     font-weight:600;
 }
+
 .cartitems-format{
     font-size:17px;
     font-weight:500;
@@ -26,9 +27,12 @@
     width:62px;
 }
 .cartitems-remove-icon{
-    width:15px;
-    margin:0px 40px;
+    width:20px;
+    margin:0px 20px;
     cursor:pointer;
+}
+.cartitems-remove-icon:hover{
+    width:23px;
 }
 .cartitems-quantity{
     width:64px;

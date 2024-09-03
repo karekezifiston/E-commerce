@@ -22,7 +22,7 @@ const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(Sho
         return <div key={e.id}>
         <div className='cartitems-format cartitems-fomart-main'>
             <img src={e.image} width={100} alt="" className='carticon-product-icon' />
-            <p>{e.id}</p>
+            <p>{e.name}</p>
             <p>{e.price}</p>
             <button className='cartitems-quantity'>{cartItems[e.id]}</button>
             <p>${e.price * cartItems[e.id]}</p>
@@ -55,13 +55,6 @@ const {getTotalCartAmount,all_product,cartItems,removeFromCart} = useContext(Sho
         </div>
         <button>PROCEED TO CHECKOUT</button>
       </div>
-       <div className='cartitems-promocode'>
-        <p>if you have a promo code, Enter it here</p>
-        <div className='cartitems-promobox'>
-          <input type="text" placeholder='promo code' name="" id="" />
-          <button>Submit</button>
-        </div>
-       </div>
     </div>
     </div>
   )

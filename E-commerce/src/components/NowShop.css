@@ -4,11 +4,16 @@
 .location{
     display: flex;
     align-items: center;
-    gap:17px;
+    gap:3px;
     margin-left:10px;
+    cursor: pointer;
+}
+.shop-p{
+    color: #5e5e5e;
 }
 .home-div,.shop-div{
     display: flex;
+    align-items: center;
     gap:1px; 
     font-weight:650;  
 }
@@ -30,14 +35,46 @@
     justify-content: center;
 }
 .started-shop h1{
-    font-size:40px;
-    color: rgba(0, 0, 0, 0.775);
-}
-.started-shop p{
-    font-size:13px;
-    color:rgba(0, 0, 0, 0.775);
+    color: #5e5e5e;
+    font-size:24px;
 }
 .shoppp{
-    padding-top:4rem;
+    font-size:25px;
     color: rgba(0, 0, 0, 0.775);
 }
+.switchs{
+    display: flex;
+    align-items: center;
+    gap:20rem;
+    padding-bottom:2rem;
+    padding-top:2rem;
+}
+.switchs-images{
+    /* padding-top:30px; */
+    display: flex;
+    align-items: center;
+    gap:7rem;
+
+}
+/* .switchs-images img{
+    height:25vw;
+    width:25vw;
+} */
+.womennn{
+    height:20vw;
+    width:0v;
+}
+.mennn{
+    height:25vw;
+}
+.shoppp{
+    /* padding-top:4rem; */
+    color: rgba(0, 0, 0, 0.775);
+    padding:5px;
+    border-radius:5px;
+}
+.switchs button{
+    border-radius:10px;
+    border:none;
+}
+

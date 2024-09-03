@@ -12,3 +12,13 @@
     grid-template-columns:1fr 1fr 1fr 1fr;
     row-gap:80px;
 }
+.category-title{
+    font-variant: small-caps;
+    color: #2e2e2e !important;
+    font-size:30px !important;
+}
+.hr-cat{
+    height:2px;
+    background-color:rgba(0, 0, 0, 0.284);
+    border: none;
+}

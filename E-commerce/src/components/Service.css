@@ -1,5 +1,5 @@
 .service{
-    width:95%;
+    width:100%;
     padding-top:5rem;
 }
 .titles{
@@ -21,6 +21,17 @@
     /* margin-top:5rem; */
     margin-left:8rem;
 }
+.hkkk{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+}
+.lol{
+    margin-top:19rem;
+}
+
+
 .men{
     display: flex;
     flex-direction: column;
@@ -38,24 +49,36 @@
     flex-direction: column;
     /* align-items: end; */
 }
+.kids h2{
+    
+}
 .rw{
     align-items: end;
     justify-content: end;
 }
 .lll>img,.women>img,.link-cat>img{
     height:15rem;
-    width:10rem;
+    width:14rem;
     border:solid rgba(0, 0, 0, 0.258) 1px;
     padding:10px;
     border-radius:20px;
 }
 .lll{
     display: flex;
-    align-items: center;
+    /* align-items: center; */
     gap:2rem;
 }
-.p-men{
+.p-men1{
     width:20%;
+    /* margin-top:30px; */
+}
+.p-men2{
+    width:20%;
+    margin-bottom:6rem;
+}
+.p-men3{
+    width:20%;
+    margin-top:30px;
 }
 .btns{
     display: flex;
@@ -166,4 +189,14 @@
   background:rgba(0, 0, 0, 0.753);
   color:white;
   z-index:-9999;
+}
+.jtt{
+    display:flex;
+}
+.llllf{
+    margin-right:2rem;
+    margin-top:17rem;
+}
+.llllf:hover{
+    transform:scale(1.1);
 }

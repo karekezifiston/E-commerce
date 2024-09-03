@@ -16,7 +16,7 @@ const Face = () => {
         <div>
           <p className='big'><span>WEAR</span><br /> THE DIFFERENCE</p>
         </div>
-        <p className='border-face '><a className='active v f' href="#service"><b>DISCOVER MORE</b></a></p>
+        <p className='border-face '><a className='active v f' href="#hero"><b>DISCOVER MORE</b></a></p>
       </div>
       <div className='left-part'>
         <img  className='imgg' src={image} alt="" />
