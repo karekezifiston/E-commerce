@@ -9,8 +9,6 @@ const NavBar = () => {
   const [menu,setMenu] =useState("shop");
   const {getTotalCartItems}=useContext(ShopContext);
 
-  const [isOpen, setIsOpen] = useState(false);
-
 
 
 
@@ -28,6 +26,9 @@ const NavBar = () => {
     mobile_panel.classList.toggle('is-active');
 
   };
+  const handleLinkClick = () => {
+    toggleMobileMenu(false);
+  };
 
 
 
@@ -36,18 +37,29 @@ const NavBar = () => {
     <div className='navbar' id='refresh'>
 
       <div className='Mobile_panel'>
-        <div className='menu-items'>
-          <h3 className='menu-option'>Home</h3>
-          <h3 className='menu-option'>Shop</h3>
-          <h3 className='menu-option'>About</h3>
-          <h3 className='menu-option'>Contact</h3>
-        </div>
+        <ul className='menu-items'>
+        <li className='menu-option' onClick={()=>{setMenu("shop")}}>
+              <Link onClick={handleLinkClick} className={`a  ${menu === "shop" ? "active" : ""}`} to='/'> Home </Link>
+            </li>
+
+            <li className='menu-option' onClick={()=>{setMenu("started")}}>
+              <Link onClick={handleLinkClick} className={`a  ${menu === "started" ? "active" : ""}`} to='./Started'>Shop </Link>
+              </li>
+
+            <li className='menu-option' onClick={()=>{setMenu("about")}}>
+              <Link onClick={handleLinkClick} className={`a  ${menu === "about" ? "active" : ""}`} to='/about'> About </Link>
+              </li>
+
+            <li className='menu-option' onClick={()=>{setMenu("contact")}}>
+              <Link onClick={handleLinkClick} className={`a  ${menu === "contact" ? "active" : ""}`} to='/contact'> Contact </Link>
+            </li>
+        </ul>
       </div>
 
       <div className='logo-links'>
         <div className='logo'>
           <img src="" alt="" />
-          <h1>Saints Shop</h1>
+          <h1 className='logo-saint'>SAINTS</h1>
         </div>
 
         <div className='menuu'>
@@ -58,7 +70,7 @@ const NavBar = () => {
           </div>
 
           
-          <ul className={`nav-links ${isOpen ?'open' :'' }`}>
+          <ul className='nav-links'>
             <li onClick={()=>{setMenu("shop")}}>
               <Link className={`a  ${menu === "shop" ? "active" : ""}`} to='/'> Home </Link>
             </li>
