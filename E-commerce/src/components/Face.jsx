@@ -21,16 +21,6 @@ const Face = () => {
       <div className='left-part'>
         <img  className='imgg' src={image} alt="" />
       </div>
-      <div className='right-partt'>
-        <div className='line-p'>
-          <hr  className='hr-line'/>
-          <p><b>HERE NOW</b></p>
-        </div>
-        <div>
-          <p className='big'><span>WEAR</span><br /> THE DIFFERENCE</p>
-        </div>
-        <p className='border-face '><a className='active v f' href="#hero"><b>DISCOVER MORE</b></a></p>
-      </div>
       </div>
       <div className='face-footer'>
       <div className="social-media">
