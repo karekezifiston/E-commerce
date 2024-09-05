@@ -88,6 +88,10 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
+        <div className='logos'>
+          <img src="" alt="" />
+          <h1 className='logo-saint'>SAINTS</h1>
+        </div>
       </div>
 
       <div className='login-cart'>
