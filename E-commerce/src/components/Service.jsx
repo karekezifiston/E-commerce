@@ -11,7 +11,6 @@ import line from '../assets/line.png'
 import { Link } from 'react-router-dom'
 import down from '../assets/down.png'
 import refresh from '../assets/refresh.png'
-// import women from '../assets/women-clothes2.png'
 const Service = () => {
   return (
     <div className='service' id='service'>
