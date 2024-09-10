@@ -25,7 +25,7 @@ const Footer = () => {
           </div>
         </div>
         <div className='third-way'>
-        <p>karekezifiston30@gmail.com</p>
+        <p>karekezifiston30@gmail.com</p> 
           <p>+250 780 377 645</p>
         </div>
         </div>
