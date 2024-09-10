@@ -1,3 +1,10 @@
+html{
+    width: 100%;
+    height: 100vh;
+     overflow-x: hidden;
+     scroll-behavior: smooth;
+    
+}
 .navbar{
     padding-top:30px;
     display: flex;
@@ -20,13 +27,16 @@
     /* gap:6rem; */
     width:100vw;
 }
-
+.logo-link{
+    text-decoration:none;
+    color:black;
+}
 .logo,.logos{
     display: flex;
     flex-direction: column;
     margin-left:2rem;
 }
-.logos{
+.log{
     display:none;
 }
 .nav-links{
@@ -162,6 +172,18 @@
     z-index:9999;
     
 }
+
+.logo{
+    display:none !important;
+}
+.log{
+    display:block;
+    margin-left:35%;
+    align-items: center;
+    justify-content: center;
+}
+
+
 .logo-links{
     display: flex;
     align-items: center;
@@ -170,16 +192,6 @@
     margin-left:1rem;
     width:10vw;
     
-}
-.logo{
-    /* display:none !important; */
-}
-.logos{
-    /* display:block; */
-}
-.logo-saint{
-    /* margin-bottom:1.5rem; */
-
 }
 
 .a::after{
@@ -476,6 +488,15 @@
     margin-left:1rem;
     width:10vw;
     
+}
+.logo{
+    display:none !important;
+}
+.log{
+    display:block;
+    margin-left:23%;
+    align-items: center;
+    justify-content: center;
 }
 
 .a::after{

@@ -5,9 +5,9 @@ import all_product from '../assets/all-product'
 import Item from './Item/Item'
 import home from './Assets/home.png'
 import arrowback from './Assets/arrowback.png'
-import mens from '../assets/men6.png'
-import women from '../assets/women5.png'
-import kid from '../assets/kid2.png'
+import menss from '../assets/menss.png'
+import womenss from '../assets/womenss.png'
+import kidd from '../assets/kidd.png'
 
 const NowShop = (props) => {
   return (
@@ -37,9 +37,9 @@ const NowShop = (props) => {
        <Link to="/kids"><button><h1 className='shoppp'>Kids</h1></button></Link>
         </div>
         <div className='switchs-images'>
-        <Link to="/mens"><img  className='mennn' src={mens} alt="" /></Link>
-        <Link to="/womens"><img className='womennn' src={women} alt="" /></Link>
-        <Link to="/kids"><img  className='mennn' src={kid} alt="" /></Link>
+        <Link to="/mens"><img  className='menn hover-image' src={menss} alt="" /></Link>
+        <Link to="/womens"><img className='womennn hover-image' src={womenss} alt="" /></Link>
+        <Link to="/kids"><img  className='mennn hover-image' src={kidd} alt="" /></Link>
         </div>
       </div>
       <div className='relatedproducts-items'>

@@ -17,7 +17,7 @@ const Hero = () => {
     slidesToScroll: 1,
     autoplay: true,
     speed: 1000,
-    autoplaySpeed: 5890,
+    autoplaySpeed: 2550,
     cssEase: "linear"
   };
   return (

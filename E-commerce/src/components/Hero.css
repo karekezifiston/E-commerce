@@ -45,13 +45,13 @@
     display:none !important;
 }
 .yy{
-    width:12vw;
-    height:19vh;
+    width:12%;
+    height:19%;
     margin-left:2rem;
 }
 .yyy{
-    width:11vw;
-    height:11vw;
+    width:11%;
+    height:11%;
 }
 .yy:hover,.yyy:hover{
     
@@ -132,21 +132,26 @@
       width:100vw;
   }
   .hero-title h1{
-    font-size:1.5rem;
+    font-size:1.9rem;
     margin-bottom:1rem;
   }
   .yyy{
-    width:12vw;
-    height:19vh;
+    width:26%;
+    height:30%;
     margin-left:2rem;
   }
   .yy{
-    width:12vw;
-    height:19vh;
+    width:26%;
+    height:30%;
     margin-left:2rem;
 }
+.fg {
+    margin-right: 1rem;
+    margin-top: 15rem;
+    display:none !important;
 }
-@media (min-width: 0px) and (max-width:785px){
+}
+@media (min-width: 547px) and (max-width:785px){
     body,html{
       overflow-x: hidden;
       width:100vw;
@@ -156,13 +161,68 @@
     margin-bottom:1rem;
   }
   .yy{
-    width:18vw;
-    height:19vh;
+    width:26%;
+    height:30%;
     margin-left:2rem;
 }
   .yyy{
-    width:20vw;
-    height:19vh;
+    width:26%;
+    height:30%;
     margin-left:2rem;
 }
+.fg {
+    margin-right: 1rem;
+    margin-top: 15rem;
+    display:none !important;
 }
+}
+@media (min-width:484px) and (max-width:547px){
+    body,html{
+        overflow-x: hidden;
+        width:100vw;
+    }
+    .hero-title h1{
+      font-size:1.5rem;
+      margin-bottom:1.4rem;
+    }
+    .yy{
+        width:29%;
+        height:33%;
+        margin-left:2rem;
+    }
+    .yyy{
+        width:29%;
+        height:33%;
+        margin-left:2rem;
+    }
+    .fg {
+        margin-right: 1rem;
+        margin-top: 15rem;
+        display:none !important;
+    }
+  }
+  @media (min-width:0px) and (max-width:484px){
+    body,html{
+        overflow-x: hidden;
+        width:100vw;
+    }
+    .hero-title h1{
+      font-size:1.5rem;
+      margin-bottom:1.4rem;
+    }
+    .yy{
+        width:29%;
+        height:33%;
+        margin-left:2rem;
+    }
+    .yyy{
+        width:29%;
+        height:33%;
+        margin-left:2rem;
+  }
+  .fg {
+    margin-right: 1rem;
+    margin-top: 15rem;
+    display:none !important;
+}
+  }

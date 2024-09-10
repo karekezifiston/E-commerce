@@ -3,6 +3,7 @@ import './NavBar.css'
 import { Link } from 'react-router-dom'
 import account from '../assets/User-1.png'
 import cart from '../assets/bag.png'
+import logo from '../assets/logo.png'
 import { ShopContext } from './Context/ShopContext'
 
 const NavBar = () => {
@@ -57,10 +58,12 @@ const NavBar = () => {
       </div>
 
       <div className='logo-links'>
-        <div className='logo'>
-          <img src="" alt="" />
+       <a className='logo-link' href="#">
+       <div className='logo'>
+          {/* <img src={logo} width={70} alt="" /> */}
           <h1 className='logo-saint'>SAINTS</h1>
         </div>
+       </a>
 
         <div className='menuu'>
           <div className="hamburger_container">
@@ -88,12 +91,11 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className='logos'>
-          <img src="" alt="" />
-          <h1 className='logo-saint'>SAINTS</h1>
-        </div>
       </div>
+      <div className='log'>
 
+   <h1 className='logo-saint'>SAINTS</h1>
+   </div>
       <div className='login-cart'>
       <Link to='/login'><img src={account} width={30} alt="" className='login-icon' /></Link> 
       <Link to='/cart'><img src={cart}width={30}alt=""className='cart-icon'/></Link>

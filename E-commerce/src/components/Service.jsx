@@ -47,17 +47,27 @@ const Service = () => {
             <h2 className='women-p'>Women Category</h2>
            <div className='lllk rw'> 
            <Link to="/womens" className='link-cat lll rw' href="">
+            <div className='par-btn'>
             <p className='p-men2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
+            <div className='btns btn-women'>
+            <Link to="/womens" className='linkk'><p>Shop</p></Link>
+            <Link to="/womens" className='aaaa' href=""><hr className='aaa ab'/></Link>
+            </div>
+            </div>
             <div className='lll tc-container'>
             <img src={womens} alt="" />
             <img src={women} className='top-img' alt="" />
             </div>
-            </Link>
-           </div>
-           <div className='btns'>
+            <div className='par-btn2'>
+            <p className='p-men2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
+            <div className='yego btns-yego '>
             <Link to="/womens" className='linkk'><p>Shop</p></Link>
             <Link to="/womens" className='aaaa' href=""><hr className='aaa ab'/></Link>
             </div>
+            </div>
+
+            </Link>
+           </div>
         </div>
         <div className='kids' id='kid'>
             <h2>Kids Category</h2>
@@ -69,9 +79,9 @@ const Service = () => {
             </Link>
             </div>
             <div className='jtt'>
-            <div>
+            <div className='jttn'>
             <p className='p-men3'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
-            <div className='btns'>
+            <div className='btns btn-kid'>
             <Link to="/kids" className='linkk'><p>Shop</p></Link>
             <Link to="/kids" className='aaaa' href=""><hr className='aaa'/></Link>
             </div>

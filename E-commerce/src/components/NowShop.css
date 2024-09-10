@@ -45,7 +45,7 @@
 .switchs{
     display: flex;
     align-items: center;
-    gap:20rem;
+    gap:21rem;
     padding-bottom:2rem;
     padding-top:2rem;
 }
@@ -54,6 +54,7 @@
     display: flex;
     align-items: center;
     gap:7rem;
+    margin-left:5rem;
 
 }
 /* .switchs-images img{
@@ -61,11 +62,29 @@
     width:25vw;
 } */
 .womennn{
-    height:20vw;
-    width:0v;
+    height:26vw;
+    width:20vw;
+    border:solid 1px black;
+    background-color:rgba(193, 191, 191, 0);
+}
+.menn{
+    height:27vw;
+    width:13vw;
+    padding:1rem;
+    background-color:rgba(193, 191, 191, 0);
+    border:solid 1px black;
+
 }
 .mennn{
-    height:25vw;
+    height:20vw;
+    width:20vw;
+    padding-left:1rem;
+    border:solid 1px black;
+    background-color:rgba(193, 191, 191, 0);
+}
+.hover-image:hover{
+    background-color: #00000039;
+    transform:scale(1.1);
 }
 .shoppp{
     /* padding-top:4rem; */

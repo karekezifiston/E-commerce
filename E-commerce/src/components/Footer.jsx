@@ -11,11 +11,12 @@ const Footer = () => {
     <div className='footer' id='footer'>
       <div className='ways'>
         <div className='first-way'>
-        <div className='logo'>
+        <div className='logo-footer'>
           <img src="" alt="" />
-           <h1>Saints Shop</h1>
+           <h1>Saints</h1>
        </div>
         </div>
+        <div className='two-adress'>
         <div className='second-way'>
           <img src={location} alt="" />
           <div className='second'>
@@ -24,8 +25,9 @@ const Footer = () => {
           </div>
         </div>
         <div className='third-way'>
-          <a href="">karekezifiston30@gmail.com</a>
-          <a href="">+250 780 377 645</a>
+        <p>karekezifiston30@gmail.com</p>
+          <p>+250 780 377 645</p>
+        </div>
         </div>
       </div>
       {/* <hr  className='hrr'/> */}

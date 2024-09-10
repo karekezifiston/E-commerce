@@ -8,7 +8,7 @@ const Face = () => {
   return (
     <div className='face'>
       <div  className='nav'>
-      <div className='right-part'>
+      <div className='right-part hi'>
         <div className='line-p'>
           <hr  className='hr-line'/>
           <p><b>HERE NOW</b></p>
@@ -20,6 +20,16 @@ const Face = () => {
       </div>
       <div className='left-part'>
         <img  className='imgg' src={image} alt="" />
+      </div>
+      <div className='right-part hello'>
+        <div className='line-p'>
+          <hr  className='hr-line'/>
+          <p><b>HERE NOW</b></p>
+        </div>
+        <div>
+          <p className='big'><span>WEAR</span><br /> THE DIFFERENCE</p>
+        </div>
+        <a className='link-one' href="#hero"><p className='border-face '><a className='active v f' href="#hero"><b>DISCOVER MORE</b></a></p></a>
       </div>
       </div>
       <div className='face-footer'>
