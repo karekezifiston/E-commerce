@@ -119,11 +119,21 @@ html{
     display: flex;
     align-items: center;
     justify-content:end;
-    gap:6px;
+    gap:10px;
     margin-right:15rem;
     width:100vw;
 }
-
+.login-button{
+    font-size:17px;
+    width:90px;
+    height:40px;
+    border:solid 1px rgb(76, 76, 76);
+    border-radius:15px;
+    margin-bottom:10px;
+}
+.login-button:hover{
+    background: rgba(0, 0, 0, 0.152);
+}
 .cart-icon:hover{
     color:rgba(0, 0, 0, 0.76);
     cursor:pointer;
@@ -275,6 +285,9 @@ html{
     width:100vw;
     height:30rem; 
     
+   }
+   .responsive{
+    display: none;
    }
 
 
@@ -727,6 +740,9 @@ html{
     color:white;
     z-index:-9999;
   }
+  .responsive{
+    display: none;
+   }
 }
 
 

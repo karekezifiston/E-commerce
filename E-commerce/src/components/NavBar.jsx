@@ -54,6 +54,7 @@ const NavBar = () => {
             <li className='menu-option' onClick={()=>{setMenu("contact")}}>
               <Link onClick={handleLinkClick} className={`a  ${menu === "contact" ? "active" : ""}`} to='/contact'> Contact </Link>
             </li>
+            <Link to='/login'><button onClick={()=>{setMenu("login")}} className='login-button'>Login</button></Link> 
         </ul>
       </div>
 
@@ -97,8 +98,10 @@ const NavBar = () => {
    <h1 className='logo-saint'>SAINTS</h1>
    </div>
       <div className='login-cart'>
-      <Link to='/login'><img src={account} width={30} alt="" className='login-icon' /></Link> 
-      <Link to='/cart'><img src={cart}width={30}alt=""className='cart-icon'/></Link>
+        {localStorage.getItem('auth-token')
+        ?<button className='login-button responsive' onClick={()=>{localStorage.removeItem('auth-token');window.location.replace('/')}}>Logout</button>
+      :<Link to='/login'><button onClick={()=>{setMenu("login")}} className='login-button responsive'>Login</button></Link>} 
+      <Link to='/cart'><img onClick={()=>{setMenu("cart")}} src={cart}width={30}alt=""className='cart-icon'/></Link>
       <div className='navbar-number'><Link className='linkkkk' to='cart'>{getTotalCartItems()}</Link></div>
       </div>
     </div>
