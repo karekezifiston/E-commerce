@@ -4,7 +4,7 @@ import './Service.css'
 import men from '../assets/men-clothes.png'
 import women from '../assets/women-clothes.png'
 import womens from '../assets/women5.png'
-import kids from '../assets/kids-clothes.png'
+import kidsClothes from '../assets/kids-clothes.png';
 import kid from '../assets/kid2.png'
 import mens from '../assets/men2.png'
 import line from '../assets/line.png'
@@ -74,7 +74,7 @@ const Service = () => {
             <div className='tc-container'>
             <Link to="/kids" className='link-cat' href="product">
             <img src={kid} alt="" />
-            <img src={kids} className='top-img' alt="" />
+            <img src={kidsClothes} className='top-img' alt="" />
             </Link>
             </div>
             <div className='jtt'>
