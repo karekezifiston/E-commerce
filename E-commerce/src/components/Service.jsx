@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
 import './Service.css'
-
 import men from '../assets/men-clothes.png'
 import women from '../assets/women-clothes.png'
 import womens from '../assets/women5.png'
-import kidsClothes from '../assets/kids-clothes.png';
+import kidsClothes from '../assets/kids-clothes.png'
 import kid from '../assets/kid2.png'
 import mens from '../assets/men2.png'
-import line from '../assets/line.png'
 import { Link } from 'react-router-dom'
 import down from '../assets/down.png'
 import refresh from '../assets/refresh.png'
