@@ -1,11 +1,14 @@
 .item{
-    width:350px;
+    padding-top:1rem;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width:100%;
 }
 .img-item{
-    height:300px;
-    width:250px;
+    height:250px;
+    width:200px;
     
 }
 .item p{

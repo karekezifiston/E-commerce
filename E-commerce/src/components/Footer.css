@@ -52,6 +52,7 @@
   flex-direction: column;
   font-size:13px;
   gap:5px;
+  margin-right:3rem;
 }
 .other-ways{
   margin-left:2rem;
@@ -119,5 +120,8 @@
   display: flex;
   align-items: center;
   gap:3rem;
+}
+.third-way{
+  margin-right:0rem;
 }
 }

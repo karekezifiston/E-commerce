@@ -34,7 +34,8 @@
     align-items:center;
     justify-content: center;
 }
-.started-shop h1{
+.title-cat h1{
+    text-align: center;
     color: #5e5e5e;
     font-size:24px;
 }
@@ -45,7 +46,8 @@
 .switchs{
     display: flex;
     align-items: center;
-    gap:21rem;
+    justify-content: center;
+    gap:20vw;
     padding-bottom:2rem;
     padding-top:2rem;
 }
@@ -53,7 +55,7 @@
     /* padding-top:30px; */
     display: flex;
     align-items: center;
-    gap:7rem;
+    gap:6rem;
     margin-left:5rem;
 
 }
@@ -95,5 +97,66 @@
 .switchs button{
     border-radius:10px;
     border:none;
+}
+@media (max-width:667px) and (min-width:0px){
+    .location-p{
+        font-size:2.5vw;
+    }
+    .title-cat h1{
+        text-align: center;
+        color: #5e5e5e;
+        font-size:3.2vw;
+        padding-bottom:20px;
+        padding-top:20px;
+    }
+    .shoppp{
+        font-size:4vw;
+        color: rgba(0, 0, 0, 0.775);
+    }
+    .started-shop{
+        display: flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content: center;
+    }
+    .switchs{
+        display:none;
+        flex-direction: column !important;
+        align-items: center;
+        justify-content: center;
+        gap:35vw;
+        padding-bottom:2rem;
+        padding-top:7rem;
+    }
+
+    .switchs-images{
+        /* padding-top:30px; */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap:2vw;
+        margin-left:0rem;
+    
+    }
+    .menn {
+        height:30rem;
+        width: 15rem;
+        padding: 1rem;
+        background-color: rgba(193, 191, 191, 0);
+        border: solid 1px black;
+    }
+    .womennn {
+        height:25rem;
+        width: 15rem;
+        border: solid 1px black;
+        background-color: rgba(193, 191, 191, 0);
+    }
+    .mennn {
+        height:22rem;
+        width: 15rem;
+        padding-left: 1rem;
+        border: solid 1px black;
+        background-color: rgba(193, 191, 191, 0);
+    }
 }
 
