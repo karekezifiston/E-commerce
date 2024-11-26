@@ -1,108 +1,128 @@
 import React, { createContext, useEffect, useState } from "react";
 
-
-
 export const ShopContext = createContext(null);
-const getDefaultCart= ()=>{
-    let cart={};
-    for (let index = 0; index < 300+1; index++) {
-        cart[index]=0;   
-        
+
+const getDefaultCart = () => {
+    let cart = {};
+    for (let index = 0; index <= 300; index++) {
+        cart[index] = 0;
     }
     return cart;
-}
+};
 
-const ShopContextProvider =(props)=>{
+const ShopContextProvider = (props) => {
+    const [all_product, setAll_products] = useState([]);
+    const [cartItems, setCartItems] = useState(getDefaultCart());
 
-const [all_product,setAll_products] = useState([]);
-const [cartItems,setCartItems]=useState(getDefaultCart());
+    useEffect(() => {
+        // Fetch all products
+        fetch('https://shop-eco-backend.onrender.com/allproducts')
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Error fetching products: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => setAll_products(data))
+            .catch((error) => console.error('Error fetching products:', error));
 
-useEffect(()=>{
-   fetch('https://shop-eco-backend.onrender.com/allproducts')
-   .then((response)=>response.json())
-   .then((data)=>setAll_products(data))
+        // Fetch cart if user is logged in
+        if (localStorage.getItem('auth-token')) {
+            fetch('https://shop-eco-backend.onrender.com/getcart', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({}), // Empty body
+            })
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Error fetching cart: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((data) => setCartItems(data))
+                .catch((error) => console.error('Error fetching cart:', error));
+        }
+    }, []);
 
-   if (localStorage.getItem('auth-token')){
-    fetch('https://shop-eco-backend.onrender.com/getcart',{
-        method:'POST',
-        headers:{
-            Accept:'application/form-data',
-            'auth-token':`${localStorage.getItem('auth-token')}`,
-            'Content-Type':'application/json',
-        },
-        body:"",
-    }).then((response)=>response.json())
-      .then((data)=>setCartItems(data));
-   }
-},[])
+    const addToCart = (itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
+        if (localStorage.getItem('auth-token')) {
+            fetch('https://shop-eco-backend.onrender.com/addtocart', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ itemId }),
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error('Error adding to cart:', error));
+        }
+    };
 
- const addToCart=(itemId)=>{
-  setCartItems((prev)=>({...prev,[itemId]:prev[itemId]+1})); 
-  if (localStorage.getItem('auth-token')) {
-    fetch('https://shop-eco-backend.onrender.com/addtocart',{
-        method:'POST',
-        headers:{
-            Accept:'application/form-data',
-            'auth-token':`${localStorage.getItem('auth-token')}`,
-            'Content-Type':'application/json',
-        },
-        body:JSON.stringify({"itemId":itemId}),
-    })
-    .then((response)=>response.json())
-    .then((data)=>console.log(data));
-  }
- }
+    const removeFromCart = (itemId) => {
+        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
- const removeFromCart=(itemId)=>{
-  setCartItems((prev)=>({...prev,[itemId]:prev[itemId]-1}))
-  if (localStorage.getItem('auth-token')) {
-    fetch('https://shop-eco-backend.onrender.com/removefromcart',{
-        method:'POST',
-        headers:{
-            Accept:'application/form-data',
-            'auth-token':`${localStorage.getItem('auth-token')}`,
-            'Content-Type':'application/json',
-        },
-        body:JSON.stringify({"itemId":itemId}),
-    })
-    .then((response)=>response.json())
-    .then((data)=>console.log(data));
-  }
- }
- const getTotalCartAmount= ()=> {
-    let totalAmount = 0;
-    for ( const item in cartItems) 
-    {
-        if(cartItems[item]>0)
-            {
-                let itemInfo = all_product.find((product)=>product.id===Number(item));
-                totalAmount +=  itemInfo.price * cartItems[item];
+        if (localStorage.getItem('auth-token')) {
+            fetch('https://shop-eco-backend.onrender.com/removefromcart', {
+                method: 'POST',
+                headers: {
+                    Accept: 'application/form-data',
+                    'auth-token': `${localStorage.getItem('auth-token')}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ itemId }),
+            })
+                .then((response) => response.json())
+                .then((data) => console.log(data))
+                .catch((error) => console.error('Error removing from cart:', error));
+        }
+    };
 
+    const getTotalCartAmount = () => {
+        let totalAmount = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
+                let itemInfo = all_product.find((product) => product.id === Number(item));
+                if (itemInfo) {
+                    totalAmount += itemInfo.price * cartItems[item];
+                }
             }
-            
-           
-    }
-    return totalAmount;
- }
- const getTotalCartItems=()=>{
-    let totalItem=0;
-    for (const item in cartItems)
-        {
-         if(cartItems[item]>0)
-            {
-                totalItem+= cartItems[item];
+        }
+        return totalAmount;
+    };
+
+    const getTotalCartItems = () => {
+        let totalItem = 0;
+        for (const item in cartItems) {
+            if (cartItems[item] > 0) {
+                totalItem += cartItems[item];
             }
         }
         return totalItem;
-}
+    };
 
- const contextValue ={getTotalCartItems,getTotalCartAmount,all_product,cartItems,addToCart,removeFromCart};
+    const contextValue = {
+        getTotalCartItems,
+        getTotalCartAmount,
+        all_product,
+        cartItems,
+        addToCart,
+        removeFromCart,
+    };
 
-    return(
+    return (
         <ShopContext.Provider value={contextValue}>
             {props.children}
         </ShopContext.Provider>
-    )
-}
+    );
+};
+
 export default ShopContextProvider;
