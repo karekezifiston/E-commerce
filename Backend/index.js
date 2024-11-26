@@ -44,11 +44,16 @@ app.post('/upload', upload.single('product'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ success: 0, message: 'No file uploaded' });
     }
+
+    // Updated image URL to be static (no dynamic port)
+    const imageUrl = `https://shop-eco-backend.onrender.com/images/${req.file.filename}`;
+
     res.json({
         success: 1,
-        image_url: `https://shop-eco-backend.onrender.com:${port}/images/${req.file.filename}`
+        image_url: imageUrl
     });
 });
+
 
 // Schema for Creating Products//
 const Product=mongoose.model('Product',{
