@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import './AddProduct.css'
-import upload_area from '../../assets/upload.PNG'
+import upload_area from '../../assets/upload.png'
 
 const AddProduct = () => {
     const[image,setImage]=useState(false);
