@@ -58,7 +58,7 @@ const ShopContextProvider = (props) => {
     const addToCart = async (itemId) => {
         // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-
+    
         if (localStorage.getItem('auth-token')) {
             try {
                 const response = await fetch('https://shop-eco-backend.onrender.com/addtocart', {
@@ -70,23 +70,38 @@ const ShopContextProvider = (props) => {
                     },
                     body: JSON.stringify({ itemId }),
                 });
-
+    
+                // Check if the response is OK
                 if (!response.ok) {
                     throw new Error(`Error adding to cart: ${response.status}`);
                 }
-                const data = await response.json();
-                console.log(data);  // Handle success message
+    
+                // Check the Content-Type to determine how to parse the response
+                const contentType = response.headers.get("Content-Type");
+    
+                if (contentType && contentType.includes("application/json")) {
+                    // If the response is JSON, parse it
+                    const data = await response.json();
+                    console.log(data);  // Handle success message (JSON)
+                } else {
+                    // If the response is plain text, read it as text
+                    const responseText = await response.text();
+                    const data = { message: responseText };  // Wrap plain text in a message object
+                    console.log(data);  // Handle success message (plain text)
+                }
+    
             } catch (error) {
                 setError(error.message);
                 console.error('Error adding to cart:', error);
             }
         }
     };
+    
 
     const removeFromCart = async (itemId) => {
         // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-
+    
         if (localStorage.getItem('auth-token')) {
             try {
                 const response = await fetch('https://shop-eco-backend.onrender.com/removefromcart', {
@@ -98,19 +113,33 @@ const ShopContextProvider = (props) => {
                     },
                     body: JSON.stringify({ itemId }),
                 });
-
+    
+                // Check if the response is OK
                 if (!response.ok) {
                     throw new Error(`Error removing from cart: ${response.status}`);
                 }
-                const data = await response.json();
-                console.log(data);  // Handle success message
+    
+                // Check the Content-Type to determine how to parse the response
+                const contentType = response.headers.get("Content-Type");
+    
+                if (contentType && contentType.includes("application/json")) {
+                    // If the response is JSON, parse it
+                    const data = await response.json();
+                    console.log(data);  // Handle success message (JSON)
+                } else {
+                    // If the response is plain text, read it as text
+                    const responseText = await response.text();
+                    const data = { message: responseText };  // Wrap plain text in a message object
+                    console.log(data);  // Handle success message (plain text)
+                }
+    
             } catch (error) {
                 setError(error.message);
                 console.log('Error removing from cart:', error);
             }
         }
     };
-
+    
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
@@ -145,7 +174,11 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value={contextValue}>
-            {loading ? <div>Loading...</div> : (error ? <div>Error: {error}</div> : props.children)}
+            {loading ?
+             <div className='wait'>
+                <div className='rotate'></div>
+                </div>
+              : (error ? <div>Error: {error}</div> : props.children)}
         </ShopContext.Provider>
     );
 };
