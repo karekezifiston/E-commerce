@@ -8,10 +8,10 @@ const cors = require('cors');
 const { type } = require('os');
 const { error } = require('console');
 
-const port = process.env.PORT || 4000;  // Use environment variable for production port
 app.use(express.json());
 app.use(cors());
 
+const port = process.env.PORT || 4000;  // Use environment variable for production port
 // DATABASE CONNECTION WITH MongoDB
 mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb.net/e-commerce")
     .then(() => {
@@ -254,11 +254,10 @@ app.post('/getcart',fetchUser,async(req,res)=>{
    res.json(userData.cartData);
 })
 
-app.listen(process.env.PORT || 4000, '0.0.0.0', (error) => {
+app.listen(port, (error) => {
     if (!error) {
-        console.log("Server Running on Port " + process.env.PORT || 4000);
+        console.log("Server Running on Port " + port);
     } else {
-        console.log("Error: " + error);
+        console.log("Error :" + error);
     }
 });
-
