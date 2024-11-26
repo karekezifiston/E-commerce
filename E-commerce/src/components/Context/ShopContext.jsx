@@ -17,88 +17,97 @@ const ShopContextProvider = (props) => {
     const [error, setError] = useState(null);      // Track errors
 
     useEffect(() => {
-        // Fetch all products
-        fetch('https://shop-eco-backend.onrender.com/allproducts')
-            .then((response) => {
-                if (!response.ok) {
-                    throw new Error(`Error fetching products: ${response.status}`);
+        const fetchAllData = async () => {
+            try {
+                // Fetch all products
+                const productsResponse = await fetch('https://shop-eco-backend.onrender.com/allproducts');
+                if (!productsResponse.ok) {
+                    throw new Error(`Error fetching products: ${productsResponse.status}`);
                 }
-                return response.json();
-            })
-            .then((data) => {
-                setAll_products(data);
-                setLoading(false);
-            })
-            .catch((error) => {
-                setError(error.message);
-                setLoading(false);
-            });
+                const productsData = await productsResponse.json();
+                setAll_products(productsData);
 
-        // Fetch cart if user is logged in
-        if (localStorage.getItem('auth-token')) {
-            fetch('https://shop-eco-backend.onrender.com/getcart', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({}), // Empty body
-            })
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error(`Error fetching cart: ${response.status}`);
+                // Fetch cart if user is logged in
+                if (localStorage.getItem('auth-token')) {
+                    const cartResponse = await fetch('https://shop-eco-backend.onrender.com/getcart', {
+                        method: 'POST',
+                        headers: {
+                            Accept: 'application/form-data',
+                            'auth-token': `${localStorage.getItem('auth-token')}`,
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({}),
+                    });
+                    if (!cartResponse.ok) {
+                        throw new Error(`Error fetching cart: ${cartResponse.status}`);
                     }
-                    return response.json();
-                })
-                .then((data) => {
-                    setCartItems(data);
-                    setLoading(false);
-                })
-                .catch((error) => {
-                    setError(error.message);
-                    setLoading(false);
-                });
-        } else {
-            setLoading(false);
-        }
-    }, []);
+                    const cartData = await cartResponse.json();
+                    setCartItems(cartData);
+                }
 
-    const addToCart = (itemId) => {
+                setLoading(false);
+            } catch (err) {
+                setError(err.message);
+                setLoading(false);
+            }
+        };
+
+        fetchAllData();
+    }, []);  // Runs once when the component is mounted
+
+    const addToCart = async (itemId) => {
+        // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
 
         if (localStorage.getItem('auth-token')) {
-            fetch('https://shop-eco-backend.onrender.com/addtocart', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ itemId }),
-            })
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.error('Error adding to cart:', error));
+            try {
+                const response = await fetch('https://shop-eco-backend.onrender.com/addtocart', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/form-data',
+                        'auth-token': `${localStorage.getItem('auth-token')}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ itemId }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error adding to cart: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data);  // Handle success message
+            } catch (error) {
+                setError(error.message);
+                console.error('Error adding to cart:', error);
+            }
         }
     };
 
-    const removeFromCart = (itemId) => {
+    const removeFromCart = async (itemId) => {
+        // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
 
         if (localStorage.getItem('auth-token')) {
-            fetch('https://shop-eco-backend.onrender.com/removefromcart', {
-                method: 'POST',
-                headers: {
-                    Accept: 'application/form-data',
-                    'auth-token': `${localStorage.getItem('auth-token')}`,
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ itemId }),
-            })
-                .then((response) => response.json())
-                .then((data) => console.log(data))
-                .catch((error) => console.error('Error removing from cart:', error));
+            try {
+                const response = await fetch('https://shop-eco-backend.onrender.com/removefromcart', {
+                    method: 'POST',
+                    headers: {
+                        Accept: 'application/form-data',
+                        'auth-token': `${localStorage.getItem('auth-token')}`,
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ itemId }),
+                });
+
+                if (!response.ok) {
+                    throw new Error(`Error removing from cart: ${response.status}`);
+                }
+                const data = await response.json();
+                console.log(data);  // Handle success message
+            } catch (error) {
+                setError(error.message);
+                console.error('Error removing from cart:', error);
+            }
         }
     };
 
