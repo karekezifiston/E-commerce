@@ -106,7 +106,7 @@ const ShopContextProvider = (props) => {
                 console.log(data);  // Handle success message
             } catch (error) {
                 setError(error.message);
-                console.error('Error removing from cart:', error);
+                console.log('Error removing from cart:', error);
             }
         }
     };
