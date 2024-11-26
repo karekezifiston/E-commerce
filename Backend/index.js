@@ -11,7 +11,6 @@ const { error } = require('console');
 app.use(express.json());
 app.use(cors());
 
-const port = process.env.PORT || 4000;  // Use environment variable for production port
 // DATABASE CONNECTION WITH MongoDB
 mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb.net/e-commerce")
     .then(() => {
