@@ -13,6 +13,8 @@ const getDefaultCart = () => {
 const ShopContextProvider = (props) => {
     const [all_product, setAll_products] = useState([]);
     const [cartItems, setCartItems] = useState(getDefaultCart());
+    const [loading, setLoading] = useState(true);  // Track loading state
+    const [error, setError] = useState(null);      // Track errors
 
     useEffect(() => {
         // Fetch all products
@@ -23,8 +25,14 @@ const ShopContextProvider = (props) => {
                 }
                 return response.json();
             })
-            .then((data) => setAll_products(data))
-            .catch((error) => console.error('Error fetching products:', error));
+            .then((data) => {
+                setAll_products(data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                setError(error.message);
+                setLoading(false);
+            });
 
         // Fetch cart if user is logged in
         if (localStorage.getItem('auth-token')) {
@@ -43,8 +51,16 @@ const ShopContextProvider = (props) => {
                     }
                     return response.json();
                 })
-                .then((data) => setCartItems(data))
-                .catch((error) => console.error('Error fetching cart:', error));
+                .then((data) => {
+                    setCartItems(data);
+                    setLoading(false);
+                })
+                .catch((error) => {
+                    setError(error.message);
+                    setLoading(false);
+                });
+        } else {
+            setLoading(false);
         }
     }, []);
 
@@ -120,7 +136,7 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value={contextValue}>
-            {props.children}
+            {loading ? <div>Loading...</div> : (error ? <div>Error: {error}</div> : props.children)}
         </ShopContext.Provider>
     );
 };
