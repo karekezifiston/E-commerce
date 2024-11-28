@@ -88,7 +88,7 @@ margin-left:10px;
 .scroll-link:hover{
     color:rgb(122, 122, 122);
 }
-  @media (min-width:0px) and (max-width:700px){
+  @media (min-width:0px) and (max-width:600px){
     .img_on{
         display:block;
         width:30vw;
