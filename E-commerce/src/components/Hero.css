@@ -91,7 +91,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-     border: solid;
     border-radius:20px; 
     border-color: rgb(177, 178, 179); 
   }

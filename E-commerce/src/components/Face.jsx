@@ -1,36 +1,57 @@
 import React from 'react'
 import './Face.css'
 import image from '../assets/back.png'
+import image1 from '../assets/image1.png'
+import image2 from '../assets/image2.png'
+import image4 from '../assets/image4.png'
 import down from '../assets/down.png'
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import { useMediaQuery } from 'react-responsive';
 import { FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn } from 'react-icons/fa';
 
 const Face = () => {
+  const isMobileOne = useMediaQuery({ query: '(max-width:1088px)' });
+  const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
+  
+  const settings = {
+    infinite: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    speed: 2000,
+    autoplaySpeed: 2000,
+    cssEase: "linear"
+  };
+
+
   return (
     <div className='face'>
       <div  className='nav'>
-      <div className='right-part hi'>
-        <div className='line-p'>
-          <hr  className='hr-line'/>
-          <p><b>HERE NOW</b></p>
-        </div>
-        <div>
-          <p className='big'><span>WEAR</span><br /> THE DIFFERENCE</p>
-        </div>
-        <a className='link-one' href="#hero"><p className='border-face '><a className='active v f' href="#hero"><b>DISCOVER MORE</b></a></p></a>
-      </div>
-      <div className='left-part'>
-        <img  className='imgg' src={image} alt="" />
-      </div>
-      <div className='right-part hello'>
-        <div className='line-p'>
-          <hr  className='hr-line'/>
-          <p><b>HERE NOW</b></p>
-        </div>
-        <div>
-          <p className='big'><span>WEAR</span><br /> THE DIFFERENCE</p>
-        </div>
-        <a className='link-one' href="#hero"><p className='border-face '><a className='active v f' href="#hero"><b>DISCOVER MORE</b></a></p></a>
-      </div>
+      <div className="slider-container">
+            <Slider className='di' {...settings}>
+              <div className="Trend">
+                <div className="card">
+                <div className="first_border">
+              <img src={image1} alt="" className="img_one"/>
+              <img src={image2} alt="" className="img_one"/>
+              </div>
+                </div>
+              </div>
+
+              <div className="Trend">
+              <div className="card">
+              <div className="first_border">
+            <img src={image1} alt="" className="img_on"/>
+            <img src={image2} alt="" className="img_on"/>
+            </div>
+                </div>
+              </div>
+              
+
+            </Slider>
+          </div>
       </div>
       <div className='face-footer'>
       <div className="social-media">
@@ -57,3 +78,45 @@ const Face = () => {
 }
 
 export default Face
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
