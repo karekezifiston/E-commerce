@@ -2,6 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import './NavBar.css';
 import { Link } from 'react-router-dom';
 import cart from '../assets/bag.png';
+import saints from '../assets/saints.png';
 import { ShopContext } from './Context/ShopContext';
 
 const NavBar = () => {
@@ -84,7 +85,7 @@ const NavBar = () => {
       <div className="logo-links">
         <a className="logo-link" href="#">
           <div className="logo">
-            <h1 className="logo-saint">SAINTS</h1>
+            <h1 className="logo-saint"><img src={saints}width={90} alt="" /></h1>
           </div>
         </a>
 
@@ -135,7 +136,7 @@ const NavBar = () => {
         </div>
       </div>
       <div className="log">
-        <h1 className="logo-saint">SAINTS</h1>
+        <h1 className="logo-saint"><img src={saints}width={90} alt="" /></h1>
       </div>
       <div className="login-cart">
         {localStorage.getItem('auth-token') ? (
