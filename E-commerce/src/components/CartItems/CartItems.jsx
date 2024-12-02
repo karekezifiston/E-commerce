@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import './CartItems.css';
 import { ShopContext } from '../Context/ShopContext';
-import removeIcon from '../assets/remove.png';
+import removeIcon from '../../assets/remove.png';
 import { useNavigate } from 'react-router-dom';
 
 const CartItems = () => {
