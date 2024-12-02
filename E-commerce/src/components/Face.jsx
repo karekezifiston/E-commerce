@@ -19,7 +19,7 @@ const Face = () => {
     slidesToScroll: 1,
     autoplay: isSmallScreen, // Enable autoplay only for screens 800px or smaller
     speed: 3900,
-    autoplaySpeed:0,
+    autoplaySpeed:3000,
     cssEase: 'linear',
   };
 
