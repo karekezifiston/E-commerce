@@ -8,8 +8,41 @@
     display: flex;
     justify-self: center;
     align-self: center;
-    gap:10rem;
+    gap:10vw;
     display: grid;
     grid-template-columns:1fr 1fr 1fr 1fr;
     row-gap:30px;
+}
+@media (min-width:832px) and (max-width:1252px){
+    .product-items{
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        gap:10vw;
+        display: grid;
+        grid-template-columns:1fr 1fr 1fr;
+        row-gap:30px;
+    } 
+}
+@media (min-width:523px) and (max-width:832px){
+    .product-items{
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        gap:10vw;
+        display: grid;
+        grid-template-columns:1fr 1fr;
+        row-gap:30px;
+    } 
+}
+@media (min-width:3px) and (max-width:523px){
+    .product-items{
+        display: flex;
+        justify-self: center;
+        align-self: center;
+        gap:10vw;
+        display: grid;
+        grid-template-columns:1fr;
+        row-gap:30px;
+    } 
 }
