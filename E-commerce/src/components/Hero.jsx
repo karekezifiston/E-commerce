@@ -19,15 +19,15 @@ const Hero = () => {
         <h1>Our Trends</h1>
       </div>
       <div className="product-items">
-        {bestSeller.map((product, index) => (
+        {bestSeller.map((item, i) => (
           <Item
-            key={index}
-            id={product._id} // Assuming _id is the unique field
-            image={product.image}
-            name={product.name}
-            type={product.type}
-            description={product.description}
-            price={product.price}
+            key={i}
+            id={item.id} // Assuming _id is the unique field
+            image={item.image}
+            name={item.name}
+            type={item.type}
+            description={item.description}
+            price={item.price}
           />
         ))}
       </div>
