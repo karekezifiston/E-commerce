@@ -11,10 +11,10 @@ const getDefaultCart = () => {
 };
 
 const ShopContextProvider = (props) => {
-    const [all_product, setAll_products] = useState([]);
-    const [cartItems, setCartItems] = useState(getDefaultCart());
-    const [loading, setLoading] = useState(true);  // Track loading state
-    const [error, setError] = useState(null);      // Track errors
+    const [all_product, setAll_products] = useState([]); // Default to empty array
+    const [cartItems, setCartItems] = useState(getDefaultCart()); // Default cart
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchAllData = async () => {
@@ -53,12 +53,12 @@ const ShopContextProvider = (props) => {
         };
 
         fetchAllData();
-    }, []);  // Runs once when the component is mounted
+    }, []);
 
     const addToCart = async (itemId) => {
         // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-    
+
         if (localStorage.getItem('auth-token')) {
             try {
                 const response = await fetch('https://shop-eco-backend.onrender.com/addtocart', {
@@ -70,38 +70,30 @@ const ShopContextProvider = (props) => {
                     },
                     body: JSON.stringify({ itemId }),
                 });
-    
-                // Check if the response is OK
+
                 if (!response.ok) {
                     throw new Error(`Error adding to cart: ${response.status}`);
                 }
-    
-                // Check the Content-Type to determine how to parse the response
                 const contentType = response.headers.get("Content-Type");
-    
+
                 if (contentType && contentType.includes("application/json")) {
-                    // If the response is JSON, parse it
                     const data = await response.json();
-                    console.log(data);  // Handle success message (JSON)
+                    console.log(data);
                 } else {
-                    // If the response is plain text, read it as text
                     const responseText = await response.text();
-                    const data = { message: responseText };  // Wrap plain text in a message object
-                    console.log(data);  // Handle success message (plain text)
+                    const data = { message: responseText };
+                    console.log(data);
                 }
-    
             } catch (error) {
                 setError(error.message);
                 console.error('Error adding to cart:', error);
             }
         }
     };
-    
 
     const removeFromCart = async (itemId) => {
-        // Optimistically update the state
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    
+
         if (localStorage.getItem('auth-token')) {
             try {
                 const response = await fetch('https://shop-eco-backend.onrender.com/removefromcart', {
@@ -113,33 +105,27 @@ const ShopContextProvider = (props) => {
                     },
                     body: JSON.stringify({ itemId }),
                 });
-    
-                // Check if the response is OK
+
                 if (!response.ok) {
                     throw new Error(`Error removing from cart: ${response.status}`);
                 }
-    
-                // Check the Content-Type to determine how to parse the response
                 const contentType = response.headers.get("Content-Type");
-    
+
                 if (contentType && contentType.includes("application/json")) {
-                    // If the response is JSON, parse it
                     const data = await response.json();
-                    console.log(data);  // Handle success message (JSON)
+                    console.log(data);
                 } else {
-                    // If the response is plain text, read it as text
                     const responseText = await response.text();
-                    const data = { message: responseText };  // Wrap plain text in a message object
-                    console.log(data);  // Handle success message (plain text)
+                    const data = { message: responseText };
+                    console.log(data);
                 }
-    
             } catch (error) {
                 setError(error.message);
                 console.log('Error removing from cart:', error);
             }
         }
     };
-    
+
     const getTotalCartAmount = () => {
         let totalAmount = 0;
         for (const item in cartItems) {
@@ -174,11 +160,15 @@ const ShopContextProvider = (props) => {
 
     return (
         <ShopContext.Provider value={contextValue}>
-            {loading ?
-             <div className='wait'>
-                <div className='rotate'></div>
+            {loading ? (
+                <div className="wait">
+                    <div className="rotate"></div>
                 </div>
-              : (error ? <div>Error: {error}</div> : props.children)}
+            ) : error ? (
+                <div>Error: {error}</div>
+            ) : (
+                props.children
+            )}
         </ShopContext.Provider>
     );
 };
