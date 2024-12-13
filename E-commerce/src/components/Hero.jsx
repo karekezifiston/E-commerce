@@ -4,14 +4,14 @@ import { ShopContext } from './Context/ShopContext';
 import Item from './Item/Item'; // Importing the Item component
 
 const Hero = () => {
-  const { all_product } = useContext(ShopContext);
+  const {product_list } = useContext(ShopContext);
   const [bestSeller, setBestSeller] = useState([]);
 
   useEffect(() => {
-    if (all_product) {
-      setBestSeller(all_product.slice(0, 4)); // Get the first 5 products as bestsellers
+    if (product_list) {
+      setBestSeller(product_list.slice(0, 4)); // Get the first 5 products as bestsellers
     }
-  }, [all_product]);
+  }, [product_list]);
 
   return (
     <div className="hero">
@@ -19,10 +19,10 @@ const Hero = () => {
         <h1>Our Trends</h1>
       </div>
       <div className="product-items">
-        {bestSeller.map((item, i) => (
+        {bestSeller.map((item, index) => (
           <Item
-            key={i}
-            id={item.id} // Assuming _id is the unique field
+            key={index}
+            id={item._id} // Assuming _id is the unique field
             image={item.image}
             name={item.name}
             type={item.type}

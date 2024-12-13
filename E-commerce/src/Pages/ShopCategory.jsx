@@ -43,9 +43,9 @@ const ShopCategory = (props) => {
         <h1 className='category-title'>{category}<hr className='hr-cat'/></h1>
       </div>
        <div className='shopcategory-products'>
-        {product_list.map((item,i)=>{
+        {product_list.map((item,index)=>{
          if (props.category===item.category){
-          return <Item key={i} id={item.id} name={item.name} image={item.image} price={item.price} />
+          return <Item key={index} id={item._id} name={item.name} image={item.image} price={item.price} />
          }
          else{
           return null;
