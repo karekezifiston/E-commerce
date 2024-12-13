@@ -2,7 +2,7 @@ import productModel from "../models/productModel.js";
 import fs from 'fs';
 
 // Add product item
-const addPoduct = async (req, res) => {
+const addProduct = async (req, res) => {
   // Check if the file is uploaded
   if (!req.file) {
     return res.status(400).json({ success: false, message: "No image file uploaded!" });
@@ -54,4 +54,4 @@ const removeProduct =async(req,res)=>{
   }
 }
 
-export { addPoduct,listProduct,removeProduct};
+export { addProduct,listProduct,removeProduct};
