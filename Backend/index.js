@@ -31,31 +31,14 @@ mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb
 
 // Image Storage Engine for multer
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, uploadDir); // Save files to the correct directory
-    },
+    destination:"upload", // Absolute path to the directory
     filename: (req, file, cb) => {
-        const uniqueName = `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`;
-        cb(null, uniqueName); // Generate a unique filename
+        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`); // Use unique filename
     }
 });
 
 // Multer upload configuration
-const upload = multer({
-    storage: storage,
-    fileFilter: (req, file, cb) => {
-        // Allow only image files (JPEG, PNG, GIF)
-        const allowedFileTypes = /jpeg|jpg|png|gif/;
-        const extname = allowedFileTypes.test(path.extname(file.originalname).toLowerCase());
-        const mimetype = allowedFileTypes.test(file.mimetype);
-
-        if (extname && mimetype) {
-            cb(null, true);
-        } else {
-            cb(new Error('Only image files are allowed!'));
-        }
-    }
-});
+const upload = multer({ storage:storage });
 
 // Serve static files for uploaded images
 app.use('/images', express.static(uploadDir));
@@ -65,10 +48,9 @@ app.post('/upload', upload.single('product'), (req, res) => {
     if (!req.file) {
         return res.status(400).json({ success: 0, message: 'No file uploaded' });
     }
-    const imageUrl = `https://shop-eco-backend.onrender.com/images/${req.file.filename}`;
     res.json({
         success: 1,
-        image_url: imageUrl
+        image_url: `https://shop-eco-backend.onrender.com/images/${req.file.filename}`
     });
 });
 
