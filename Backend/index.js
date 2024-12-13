@@ -21,7 +21,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // DATABASE CONNECTION WITH MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb.net/e-commerce")
     .then(() => {
         console.log("MongoDB connected successfully.");
     })
