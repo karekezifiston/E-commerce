@@ -4,6 +4,7 @@ const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
 const fs = require('fs');
+require('dotenv').config();
 
 const app = express();
 
@@ -20,7 +21,7 @@ if (!fs.existsSync(uploadDir)) {
 }
 
 // DATABASE CONNECTION WITH MongoDB
-mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb.net/e-commerce")
+mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         console.log("MongoDB connected successfully.");
     })
