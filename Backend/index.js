@@ -1,6 +1,5 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const multer = require('multer');
 const path = require('path');
 const cors = require('cors');
@@ -12,8 +11,13 @@ const app = express();
 app.use(express.json());
 app.use(cors({ origin: '*' })); // Allow all origins
 
-const port = process.env.PORT || 4000; // Use environment variable for production port
+const port = process.env.PORT || 4000;
 
+// Ensure upload directory exists
+const uploadDir = path.join(__dirname, 'upload', 'images');
+if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+}
 
 // DATABASE CONNECTION WITH MongoDB
 mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb.net/e-commerce")
@@ -26,9 +30,11 @@ mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb
 
 // Image Storage Engine for multer
 const storage = multer.diskStorage({
-    destination:'./upload/images', // Absolute path to the directory
+    destination: (req, file, cb) => {
+        cb(null, uploadDir); // Use the absolute path for the directory
+    },
     filename: (req, file, cb) => {
-       return cb(null,`${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`); // Use unique filename
+        cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`); // Use a unique filename
     }
 });
 
@@ -36,7 +42,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Serve static files for uploaded images
-app.use('/images', express.static('upload/images'));
+app.use('/images', express.static(uploadDir));
 
 // Image upload endpoint
 app.post('/upload', upload.single('product'), (req, res) => {
