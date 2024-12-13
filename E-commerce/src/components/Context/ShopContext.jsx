@@ -1,15 +1,15 @@
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 
-export const ShopeContext = createContext(null);
+export const ShopContext = createContext(null);
 
 const ShopContextProvider = (props) => {
     const [cartItems, setCartItems] = useState({});
     const [token, setToken] = useState("");
-    const [food_list, setFoodList] = useState([]);
+    const [product_list, setProductList] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Define isLoading state
 
-    const url = "https://food-eco-backend.onrender.com";
+    const url = "https://shop-eco-backend.onrender.com";
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {
@@ -34,16 +34,22 @@ const ShopContextProvider = (props) => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
-                let itemInfo = food_list.find((product) => product._id === item);
-                totalAmount += itemInfo.price * cartItems[item];
+                // Find the product information in the product_list
+                let itemInfo = product_list.find((product) => product._id === item);
+    
+                // Check if itemInfo exists and has a price before accessing it
+                if (itemInfo && itemInfo.price) {
+                    totalAmount += itemInfo.price * cartItems[item];
+                }
             }
         }
         return totalAmount;
     };
+    
 
-    const fetchFoodList = async () => {
-        const response = await axios.get(url + "/api/food/list");
-        setFoodList(response.data.data);
+    const fetchProductList = async () => {
+        const response = await axios.get(url + "/api/product/list");
+        setProductList(response.data.data);
     };
 
     const loadCartData = async (token) => {
@@ -53,7 +59,7 @@ const ShopContextProvider = (props) => {
 
     useEffect(() => {
         async function loadData() {
-            await fetchFoodList();
+            await fetchProductList();
             if (localStorage.getItem("token")) {
                 setToken(localStorage.getItem("token"));
                 await loadCartData(localStorage.getItem("token"));
@@ -64,7 +70,7 @@ const ShopContextProvider = (props) => {
     }, []);
 
     const contextValue = {
-        food_list,
+        product_list,
         cartItems,
         setCartItems,
         addToCart,

@@ -1,14 +1,14 @@
 import React from 'react'
-import './NavBar.css'
-import navProfile from '../../assets/fis.PNG'
+import './Navbar.css'
+import { assets } from '../../assets/assets'
 
-const NavBar = () => {
+const Navbar = () => {
   return (
     <div className='navbar'>
-      <h1 className='logo-saint'>SAINTS</h1>
-      <img className='navprofile' src={navProfile} alt=""  width={50}/>
+       <img className='logo' src={assets.logo} alt="" />
+       <img className='profile' src={assets.profile_image} alt="" />
     </div>
   )
 }
 
-export default NavBar
+export default Navbar

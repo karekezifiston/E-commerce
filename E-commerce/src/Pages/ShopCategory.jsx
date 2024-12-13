@@ -18,7 +18,7 @@ import kid from '../assets/kid2.png'
 const ShopCategory = (props) => {
   const {category}=props;
   // const [button,setButton]=useState("");
-  const {all_product}=useContext(ShopContext)
+  const {product_list}=useContext(ShopContext)
 
   return (
     <div className='shop-category'>
@@ -43,7 +43,7 @@ const ShopCategory = (props) => {
         <h1 className='category-title'>{category}<hr className='hr-cat'/></h1>
       </div>
        <div className='shopcategory-products'>
-        {all_product.map((item,i)=>{
+        {product_list.map((item,i)=>{
          if (props.category===item.category){
           return <Item key={i} id={item.id} name={item.name} image={item.image} price={item.price} />
          }

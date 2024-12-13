@@ -8,9 +8,9 @@ import RelatedProducts from '../components/RelatedProducts/RelatedProducts';
 import Footer from '../components/Footer';
 
 const Products = () => {
-  const {all_product}=useContext(ShopContext);
+  const {product_list}=useContext(ShopContext);
   const {productId} =useParams();
-  const product = all_product.find((e)=>e.id===Number(productId))
+  const product = product_list.find((e)=>e.id===Number(productId))
   return (
     <div>
       <Breadcrums product={product}/>
