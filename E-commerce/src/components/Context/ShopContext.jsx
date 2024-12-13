@@ -34,18 +34,15 @@ const ShopContextProvider = (props) => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
-                // Find the product information in the product_list
                 let itemInfo = product_list.find((product) => product._id === item);
-    
-                // Check if itemInfo exists and has a price before accessing it
-                if (itemInfo && itemInfo.price) {
-                    totalAmount += itemInfo.price * cartItems[item];
-                }
+                totalAmount += itemInfo.price * cartItems[item];
             }
         }
         return totalAmount;
     };
-    
+    const getTotalCartItems = () => {
+        return Object.values(cartItems).reduce((total, quantity) => total + quantity, 0);
+    };
 
     const fetchProductList = async () => {
         const response = await axios.get(url + "/api/product/list");
@@ -71,6 +68,7 @@ const ShopContextProvider = (props) => {
 
     const contextValue = {
         product_list,
+        getTotalCartItems,
         cartItems,
         setCartItems,
         addToCart,
@@ -85,8 +83,8 @@ const ShopContextProvider = (props) => {
     if (isLoading) {
         return (
             <div className='wait'>
-            <div className='rotate'></div>
-        </div>
+                <div className='rotate'></div>
+            </div>
         );
     }
 

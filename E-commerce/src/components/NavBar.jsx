@@ -8,7 +8,7 @@ import { ShopContext } from './Context/ShopContext';
 const NavBar = () => {
   // Initialize menu state from localStorage or default to 'shop'
   const [menu, setMenu] = useState(localStorage.getItem('selectedMenu') || 'shop');
-  const { getTotalCartAmount } = useContext(ShopContext);
+  const { getTotalCartItems } = useContext(ShopContext);
 
   // Persist menu state to localStorage whenever it changes
   useEffect(() => {
@@ -170,7 +170,7 @@ const NavBar = () => {
         </Link>
         <div className="navbar-number">
           <Link className="linkkkk" to="cart">
-            {getTotalCartAmount()}
+            {getTotalCartItems()}
           </Link>
         </div>
       </div>

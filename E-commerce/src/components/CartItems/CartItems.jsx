@@ -1,12 +1,10 @@
 import React, { useContext } from 'react';
 import './CartItems.css';
-
 import { ShopContext } from '../Context/ShopContext';
 import removeIcon from '../../assets/remove.png';
-import { useNavigate } from 'react-router-dom';
 
 const CartItems = () => {
-  const { getTotalCartAmount, all_product, cartItems, removeFromCart } = useContext(ShopContext);
+  const { getTotalCartAmount, product_list, cartItems, removeFromCart } = useContext(ShopContext);
 
   // Check if the cart is empty (no items with quantity greater than 0)
   const isCartEmpty = Object.values(cartItems).every((quantity) => quantity === 0);
@@ -36,22 +34,23 @@ const CartItems = () => {
             <p>Remove</p>
           </div>
           <hr />
-          {all_product.length > 0 &&
-            all_product.map((product) => {
-              if (cartItems[product.id] > 0) {
+          {product_list.length > 0 &&
+            product_list.map((product) => {
+              const cartItemQuantity = cartItems[String(product._id)]; // Ensure it's a string
+              if (cartItemQuantity > 0) {
                 return (
-                  <div key={product.id}>
+                  <div key={product._id}>
                     <div className="cartitems-format-main">
                       <img src={product.image} width={100} alt={product.name} className="carticon-product-icon" />
                       <p>{product.name}</p>
                       <p>${product.price}</p>
-                      <button className="cartitems-quantity">{cartItems[product.id]}</button>
-                      <p>${product.price * cartItems[product.id]}</p>
+                      <button className="cartitems-quantity">{cartItemQuantity}</button>
+                      <p>${product.price * cartItemQuantity}</p>
                       <img
                         className="cartitems-remove-icon"
                         src={removeIcon}
                         width={20}
-                        onClick={() => removeFromCart(product.id)}
+                        onClick={() => removeFromCart(String(product._id))}
                         alt="remove"
                       />
                     </div>
