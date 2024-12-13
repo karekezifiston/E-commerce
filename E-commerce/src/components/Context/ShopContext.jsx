@@ -1,128 +1,32 @@
-import React, { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
-export const ShopContext = createContext(null);
-
-const getDefaultCart = () => {
-    let cart = {};
-    for (let index = 0; index <= 300; index++) {
-        cart[index] = 0;
-    }
-    return cart;
-};
+export const ShopeContext = createContext(null);
 
 const ShopContextProvider = (props) => {
-    const [all_product, setAll_products] = useState([]); // Default to empty array
-    const [cartItems, setCartItems] = useState(getDefaultCart()); // Default cart
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const [cartItems, setCartItems] = useState({});
+    const [token, setToken] = useState("");
+    const [food_list, setFoodList] = useState([]);
+    const [isLoading, setIsLoading] = useState(true); // Define isLoading state
 
-    useEffect(() => {
-        const fetchAllData = async () => {
-            try {
-                // Fetch all products
-                const productsResponse = await fetch('https://shop-eco-backend.onrender.com/allproducts');
-                if (!productsResponse.ok) {
-                    throw new Error(`Error fetching products: ${productsResponse.status}`);
-                }
-                const productsData = await productsResponse.json();
-                setAll_products(productsData);
-
-                // Fetch cart if user is logged in
-                if (localStorage.getItem('auth-token')) {
-                    const cartResponse = await fetch('https://shop-eco-backend.onrender.com/getcart', {
-                        method: 'POST',
-                        headers: {
-                            Accept: 'application/form-data',
-                            'auth-token': `${localStorage.getItem('auth-token')}`,
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({}),
-                    });
-                    if (!cartResponse.ok) {
-                        throw new Error(`Error fetching cart: ${cartResponse.status}`);
-                    }
-                    const cartData = await cartResponse.json();
-                    setCartItems(cartData);
-                }
-
-                setLoading(false);
-            } catch (err) {
-                setError(err.message);
-                setLoading(false);
-            }
-        };
-
-        fetchAllData();
-    }, []);
+    const url = "https://food-eco-backend.onrender.com";
 
     const addToCart = async (itemId) => {
-        // Optimistically update the state
-        setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
-
-        if (localStorage.getItem('auth-token')) {
-            try {
-                const response = await fetch('https://shop-eco-backend.onrender.com/addtocart', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/form-data',
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ itemId }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error adding to cart: ${response.status}`);
-                }
-                const contentType = response.headers.get("Content-Type");
-
-                if (contentType && contentType.includes("application/json")) {
-                    const data = await response.json();
-                    console.log(data);
-                } else {
-                    const responseText = await response.text();
-                    const data = { message: responseText };
-                    console.log(data);
-                }
-            } catch (error) {
-                setError(error.message);
-                console.error('Error adding to cart:', error);
-            }
+        if (!cartItems[itemId]) {
+            setCartItems((prev) => ({ ...prev, [itemId]: 1 }));
+        } else {
+            setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+        }
+        // cart data
+        if (token) {
+            await axios.post(url + "/api/cart/add", { itemId }, { headers: { token } });
         }
     };
 
     const removeFromCart = async (itemId) => {
         setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-
-        if (localStorage.getItem('auth-token')) {
-            try {
-                const response = await fetch('https://shop-eco-backend.onrender.com/removefromcart', {
-                    method: 'POST',
-                    headers: {
-                        Accept: 'application/form-data',
-                        'auth-token': `${localStorage.getItem('auth-token')}`,
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ itemId }),
-                });
-
-                if (!response.ok) {
-                    throw new Error(`Error removing from cart: ${response.status}`);
-                }
-                const contentType = response.headers.get("Content-Type");
-
-                if (contentType && contentType.includes("application/json")) {
-                    const data = await response.json();
-                    console.log(data);
-                } else {
-                    const responseText = await response.text();
-                    const data = { message: responseText };
-                    console.log(data);
-                }
-            } catch (error) {
-                setError(error.message);
-                console.log('Error removing from cart:', error);
-            }
+        if (token) {
+            await axios.post(url + "/api/cart/remove", { itemId }, { headers: { token } });
         }
     };
 
@@ -130,45 +34,59 @@ const ShopContextProvider = (props) => {
         let totalAmount = 0;
         for (const item in cartItems) {
             if (cartItems[item] > 0) {
-                let itemInfo = all_product.find((product) => product.id === Number(item));
-                if (itemInfo) {
-                    totalAmount += itemInfo.price * cartItems[item];
-                }
+                let itemInfo = food_list.find((product) => product._id === item);
+                totalAmount += itemInfo.price * cartItems[item];
             }
         }
         return totalAmount;
     };
 
-    const getTotalCartItems = () => {
-        let totalItem = 0;
-        for (const item in cartItems) {
-            if (cartItems[item] > 0) {
-                totalItem += cartItems[item];
-            }
-        }
-        return totalItem;
+    const fetchFoodList = async () => {
+        const response = await axios.get(url + "/api/food/list");
+        setFoodList(response.data.data);
     };
 
+    const loadCartData = async (token) => {
+        const response = await axios.post(url + "/api/cart/get", {}, { headers: { token } });
+        setCartItems(response.data.cartData);
+    };
+
+    useEffect(() => {
+        async function loadData() {
+            await fetchFoodList();
+            if (localStorage.getItem("token")) {
+                setToken(localStorage.getItem("token"));
+                await loadCartData(localStorage.getItem("token"));
+            }
+            setIsLoading(false); // Once data is loaded, set isLoading to false
+        }
+        loadData();
+    }, []);
+
     const contextValue = {
-        getTotalCartItems,
-        getTotalCartAmount,
-        all_product,
+        food_list,
         cartItems,
+        setCartItems,
         addToCart,
         removeFromCart,
+        getTotalCartAmount,
+        url,
+        token,
+        setToken
     };
+
+    // If products are still loading, show loading indicator
+    if (isLoading) {
+        return (
+            <div className='wait'>
+            <div className='rotate'></div>
+        </div>
+        );
+    }
 
     return (
         <ShopContext.Provider value={contextValue}>
-            {loading ? (
-                <div className="wait">
-                    <div className="rotate"></div>
-                </div>
-            ) : error ? (
-                <div>Error: {error}</div>
-            ) : (
-                props.children
-            )}
+            {props.children}
         </ShopContext.Provider>
     );
 };
