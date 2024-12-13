@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const foodSchema =new mongoose.Schema({
+const productSchema =new mongoose.Schema({
     name:{type:String,requireed:true},
     description:{type:String,required:true},
     price:{type:Number,required:true},
@@ -8,6 +8,6 @@ const foodSchema =new mongoose.Schema({
     category:{type:String,required:true}
 })
 
-const foodModel= mongoose.model.food || mongoose.model("food",foodSchema);
+const productModel= mongoose.model.product || mongoose.model("product",productSchema);
 
-export default foodModel;
+export default productModel;
