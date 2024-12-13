@@ -15,7 +15,7 @@ app.use(cors({ origin: '*' })); // Allow all origins
 const port = process.env.PORT || 4000; // Use environment variable for production port
 
 // Ensure upload directory exists
-const uploadDir = path.join(__dirname, 'upload', 'images');
+const uploadDir = path.join(__dirname, 'upload','images');
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
 }
@@ -31,14 +31,14 @@ mongoose.connect("mongodb+srv://karekezifiston33:karasira@cluster0.08ojd.mongodb
 
 // Image Storage Engine for multer
 const storage = multer.diskStorage({
-    destination:"upload", // Absolute path to the directory
+    destination: uploadDir, // Absolute path to the directory
     filename: (req, file, cb) => {
         cb(null, `${file.fieldname}_${Date.now()}${path.extname(file.originalname)}`); // Use unique filename
     }
 });
 
 // Multer upload configuration
-const upload = multer({ storage:storage });
+const upload = multer({ storage: storage });
 
 // Serve static files for uploaded images
 app.use('/images', express.static(uploadDir));
