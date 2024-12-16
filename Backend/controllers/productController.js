@@ -2,21 +2,21 @@ import productModel from "../models/productModel.js";
 import fs from 'fs';
 
 // Add product item
-const addProduct = async (req,res) => {
+const addProduct = async (req, res) => {
   // Check if the file is uploaded
   if (!req.file) {
     return res.status(400).json({ success: false, message: "No image file uploaded!" });
   }
 
   const image_filename = `${req.file.filename}`;
- 
+
   // Create new product document
   const product = new productModel({
     name: req.body.name,
     description: req.body.description,
     price: req.body.price,
     category: req.body.category,
-    image:image_filename
+    image: image_filename,
   });
 
   try {
@@ -25,7 +25,7 @@ const addProduct = async (req,res) => {
     res.json({ success: true, message: "product Added Successfully!" });
   } catch (error) {
     console.error("Error saving product:", error);
-    res.status(500).json({ success:false, message: "Error saving product item. Please try again later." });
+    res.status(500).json({ success: false, message: "Error saving product item. Please try again later." });
   }
 };
 

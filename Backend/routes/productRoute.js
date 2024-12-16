@@ -1,10 +1,10 @@
-import express from "express";
-import multer from "multer";
-import { addProduct, listProduct, removeProduct } from "../controllers/productController.js";
+import express from "express"
+import { addProduct,listProduct,removeProduct } from "../controllers/productController.js"
+import multer from "multer"
 
-const productRouter = express.Router();
+const productRouter =express.Router()
 
-// Multer Storage Engine
+// Image Storage Engine
 const storage =multer.diskStorage({
     destination:"uploads",
     filename:(req,file,cb)=>{
@@ -12,11 +12,20 @@ const storage =multer.diskStorage({
     }
 })
 
-const upload = multer({ storage:storage});
+const upload =multer({storage:storage})
 
-// Product Routes
-productRouter.post("/add", upload.single("image"),addProduct);
-productRouter.get("/list", listProduct);
-productRouter.post("/remove", removeProduct);
+ 
+productRouter.post("/add",upload.single("image"),addProduct)
+productRouter.get("/list",listProduct)
+productRouter.post("/remove",removeProduct);
 
-export default productRouter;
+
+
+
+
+
+
+
+
+
+export default productRouter; 
