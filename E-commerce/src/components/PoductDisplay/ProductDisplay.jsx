@@ -4,7 +4,7 @@ import { ShopContext } from '../Context/ShopContext';
 
 const ProductDisplay = (props) => {
     const { product } = props;
-    const { addToCart } = useContext(ShopContext);
+    const { addToCart, url } = useContext(ShopContext);
 
     // Check if product exists before rendering
     if (!product) {
@@ -15,13 +15,18 @@ const ProductDisplay = (props) => {
         <div className='productdisplay'>
             <div className="productdisplay-left">
                 <div className='productdisplay-img-list'>
-                    <img src={product.image} alt={product.name} />
-                    <img src={product.image} alt={product.name} />
-                    <img src={product.image} alt={product.name} />
-                    <img src={product.image} alt={product.name} />
+                    <img src={`${url}/images/` + product.image} alt={product.name} />
+                    <img src={`${url}/images/` + product.image} alt={product.name} />
+                    <img src={`${url}/images/` + product.image} alt={product.name} />
+                    <img src={`${url}/images/` + product.image} alt={product.name} />
                 </div>
                 <div className="productdisplay-img">
-                    <img className='productdisplay-main-img' src={product.image} alt={product.name} />
+                    <img
+                        className='productdisplay-main-img'
+                        src={`${url}/images/` + product.image}
+                        alt={product.name}
+                        onError={(e) => e.target.src = '/path/to/fallback-image.jpg'} // Fallback image
+                    />
                 </div>
             </div>
             <div className="productdisplay-right">

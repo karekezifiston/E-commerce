@@ -4,7 +4,7 @@ import { ShopContext } from '../Context/ShopContext';
 import removeIcon from '../../assets/remove.png';
 
 const CartItems = () => {
-  const { getTotalCartAmount, product_list, cartItems, removeFromCart } = useContext(ShopContext);
+  const { getTotalCartAmount, product_list, cartItems, removeFromCart,url } = useContext(ShopContext);
 
   // Check if the cart is empty (no items with quantity greater than 0)
   const isCartEmpty = Object.values(cartItems).every((quantity) => quantity === 0);
@@ -41,7 +41,7 @@ const CartItems = () => {
                 return (
                   <div key={product._id}>
                     <div className="cartitems-format-main">
-                      <img src={product.image} width={100} alt={product.name} className="carticon-product-icon" />
+                      <img src={`${url}/images/` + product.image} width={100} alt={product.name} className="carticon-product-icon" />
                       <p>{product.name}</p>
                       <p>${product.price}</p>
                       <button className="cartitems-quantity">{cartItemQuantity}</button>
