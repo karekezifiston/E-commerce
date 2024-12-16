@@ -1,12 +1,12 @@
 import React from 'react'
-import Sidebar from "./components/Sidebar/Sidebar";
+import Sidebar from "./components/SideBar/SideBar";
 import { Route, Routes } from 'react-router-dom'
 import Add from './Pages/Add/Add'
 import List from './Pages/List/List'
 import Orders from './Pages/Orders/Orders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './components/Navbar/Navbar'
+import Navbar from './components/NavBar/NavBar'
 
 const App = () => {
 
@@ -15,10 +15,10 @@ const App = () => {
   return (
     <div className='app'>
       <ToastContainer />
-      <Navbar />
+      <NavBar />
       <hr />
       <div className='app-content'>
-        <Sidebar />
+        <SideBar />
         <Routes>
           <Route path='/add' element={<Add url={url} />} />
           <Route path='/list' element={<List url={url} />} />
