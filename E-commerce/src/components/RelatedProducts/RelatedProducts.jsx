@@ -8,12 +8,6 @@ const RelatedProducts = (props) => {
     <div className='relatedproducts'>
        <h1>Related Products</h1>
        <hr />
-       <div className='relatedproducts-items'>
-         {all_product.map((item,i)=>{
-          return <Item key={i} id={item.id} name={item.name} image={item.image} price={item.price} />
-        
-        })}
-       </div>
     </div>
   )
 }

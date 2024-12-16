@@ -44,16 +44,6 @@ const NowShop = (props) => {
         <Link to="/kids"><img  className='mennn hover-image' src={kidd} alt="" /></Link>
         </div>
       </div>
-      <div className='relatedproducts-items'>
-        {all_product.map((item,i)=>{
-         if (props.category===item.category){
-          return <Item key={i} id={item.id} name={item.name} image={item.image} price={item.price} />
-         }
-         else{
-          return null;
-         }
-        })}
-      </div>
     </div>
   )
 }
