@@ -1,16 +1,14 @@
 import productModel from "../models/productModel.js";
-import fs from 'fs';
+import fs from "fs";
 
-// Add product item
+// Add Product
 const addProduct = async (req, res) => {
-  // Check if the file is uploaded
   if (!req.file) {
     return res.status(400).json({ success: false, message: "No image file uploaded!" });
   }
 
-  const image_filename = `${req.file.filename}`;
+  const image_filename = req.file.filename;
 
-  // Create new product document
   const product = new productModel({
     name: req.body.name,
     description: req.body.description,
@@ -20,38 +18,48 @@ const addProduct = async (req, res) => {
   });
 
   try {
-    // Save product to database
     await product.save();
-    res.json({ success: true, message: "product Added Successfully!" });
+    res.json({ success: true, message: "Product added successfully!" });
   } catch (error) {
     console.error("Error saving product:", error);
-    res.status(500).json({ success: false, message: "Error saving product item. Please try again later." });
+    res.status(500).json({ success: false, message: "Error saving product. Please try again later." });
   }
 };
 
-//  all product list
-const listProduct =async (req,res)=>{
-      try {
-           const products =await productModel.find({});
-           res.json({success:true,data:products})
-      } catch (error) {
-        console.log(error);
-        res.json({success:false,message:"Error"})
-      }
-}
-
-// Remove product item
-const removeProduct =async(req,res)=>{
+// List Products
+const listProduct = async (req, res) => {
   try {
-      const product =await productModel.findById(req.body.id);
-      fs.unlink(`uploads/${product.image}`,()=>{})
-
-      await productModel.findByIdAndDelete(req.body.id);
-      res.json({success:true,message:"Product Removed"})
+    const products = await productModel.find({});
+    const formattedProducts = products.map(product => ({
+      ...product.toObject(),
+      imageUrl: `${req.protocol}://${req.get('host')}/images/${product.image}`,
+    }));
+    res.json({ success: true, data: formattedProducts });
   } catch (error) {
-    console.log(Error);
-    res.json({success:false,message:"Error"})
+    console.error("Error fetching products:", error);
+    res.status(500).json({ success: false, message: "Error fetching products." });
   }
-}
+};
 
-export { addProduct,listProduct,removeProduct};
+// Remove Product
+const removeProduct = async (req, res) => {
+  try {
+    const product = await productModel.findById(req.body.id);
+    if (!product) {
+      return res.status(404).json({ success: false, message: "Product not found." });
+    }
+
+    // Delete product image
+    fs.unlink(`uploads/${product.image}`, (err) => {
+      if (err) console.error("Error deleting file:", err);
+    });
+
+    await productModel.findByIdAndDelete(req.body.id);
+    res.json({ success: true, message: "Product removed successfully!" });
+  } catch (error) {
+    console.error("Error removing product:", error);
+    res.status(500).json({ success: false, message: "Error removing product." });
+  }
+};
+
+export { addProduct, listProduct, removeProduct };
