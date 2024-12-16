@@ -5,8 +5,8 @@ import List from './Pages/List/List'
 import Orders from './Pages/Orders/Orders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Navbar from './components/NavBar/NavBar';
-import Sidebar from './components/SideBar/SideBar';
+import SideBar from './components/SideBar/SideBar';
+import NavBar from './components/NavBar/NavBar'
 
 const App = () => {
 
@@ -15,10 +15,10 @@ const App = () => {
   return (
     <div className='app'>
       <ToastContainer />
-      <Navbar />
+      <NavBar />
       <hr />
       <div className='app-content'>
-        <Sidebar />
+        <SideBar />
         <Routes>
           <Route path='/add' element={<Add url={url} />} />
           <Route path='/list' element={<List url={url} />} />
