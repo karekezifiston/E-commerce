@@ -1,12 +1,12 @@
 import React from 'react'
-import SideBar from './components/SideBar/SideBar';
+import SideBar from './Components/SideBar/SideBar';
 import { Route, Routes } from 'react-router-dom'
 import Add from './Pages/Add/Add'
 import List from './Pages/List/List'
 import Orders from './Pages/Orders/Orders'
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import NavBar from './components/NavBar/NavBar'
+import NavBar from './Components/NavBar/NavBar'
 
 const App = () => {
 
