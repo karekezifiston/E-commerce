@@ -5,12 +5,12 @@ import { addProduct, listProduct, removeProduct } from "../controllers/productCo
 const productRouter = express.Router();
 
 // Multer Storage Engine
-const storage = multer.diskStorage({
-  destination: "uploads",
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
+const storage =multer.diskStorage({
+    destination:"uploads",
+    filename:(req,file,cb)=>{
+       return cb(null,`${Date.now()}${file.originalname}`)
+    }
+})
 
 const upload = multer({ storage });
 
