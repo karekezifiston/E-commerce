@@ -30,9 +30,9 @@ const addProduct = async (req, res) => {
 const listProduct = async (req, res) => {
   try {
     const products = await productModel.find({});
-    const formattedProducts = products.map(product => ({
+    const formattedProducts = products.map((product) => ({
       ...product.toObject(),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${product.image}`,
+      imageUrl: `${req.protocol}://${req.get("host")}/images/${product.image}`,
     }));
     res.json({ success: true, data: formattedProducts });
   } catch (error) {
@@ -49,11 +49,20 @@ const removeProduct = async (req, res) => {
       return res.status(404).json({ success: false, message: "Product not found." });
     }
 
-    // Delete product image
-    fs.unlink(`uploads/${product.image}`, (err) => {
-      if (err) console.error("Error deleting file:", err);
+    // Delete product image if it exists
+    const imagePath = `uploads/${product.image}`;
+    fs.exists(imagePath, (exists) => {
+      if (exists) {
+        fs.unlink(imagePath, (err) => {
+          if (err) {
+            console.error("Error deleting file:", err);
+            return res.status(500).json({ success: false, message: "Error deleting product image." });
+          }
+        });
+      }
     });
 
+    // Delete the product from the database
     await productModel.findByIdAndDelete(req.body.id);
     res.json({ success: true, message: "Product removed successfully!" });
   } catch (error) {
