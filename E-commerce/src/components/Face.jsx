@@ -2,7 +2,6 @@ import React from 'react';
 import './Face.css';
 import image1 from '../assets/image1.png';
 import image2 from '../assets/image2.png';
-import down from '../assets/down.png';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -89,7 +88,6 @@ const Face = () => {
           </div>
           <div className="Sroll">
             <a className="scroll-link" href="#hero">
-              <img src={down} width={40} alt="" />
             </a>
           </div>
         </div>

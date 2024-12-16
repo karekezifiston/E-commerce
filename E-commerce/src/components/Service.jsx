@@ -6,7 +6,6 @@ import womens from '../assets/women.png'
 import kid from '../assets/kids.png'
 import mens from '../assets/men.png'
 import { Link } from 'react-router-dom'
-import down from '../assets/down.png'
 import refresh from '../assets/refresh.png'
 const Service = () => {
   return (
@@ -37,7 +36,6 @@ const Service = () => {
            </div>
 
         </div>
-        <a href="#kid"><img className='lol' src={down}width={40} alt="" /></a>
         </div>
         <div className='women'>
             <h2 className='women-p'>Women Category</h2>
