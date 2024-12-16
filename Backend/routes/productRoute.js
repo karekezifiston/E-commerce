@@ -12,10 +12,10 @@ const storage =multer.diskStorage({
     }
 })
 
-const upload = multer({ storage });
+const upload = multer({ storage:storage});
 
 // Product Routes
-productRouter.post("/add", upload.single("image"), addProduct);
+productRouter.post("/add", upload.single("image"),addProduct);
 productRouter.get("/list", listProduct);
 productRouter.post("/remove", removeProduct);
 
