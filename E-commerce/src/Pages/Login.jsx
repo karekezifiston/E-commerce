@@ -18,7 +18,7 @@ const Login = () => {
   const login =async ()=>{
     console.log('Login Function Executed',formData);
     let responseData;
-    await fetch('https://shop-eco-backend.onrender.com/login',{
+    await fetch('https://e-commerce-web-backend-gmn1.onrender.com/login',{
       method:'POST',
       headers:{
         Accept:'application/form-data',
@@ -39,7 +39,7 @@ const Login = () => {
   const signup =async ()=>{
     console.log('SignUp Function Executed',formData);
     let responseData;
-    await fetch('https://shop-eco-backend.onrender.com/signup',{
+    await fetch('https://e-commerce-web-backend-gmn1.onrender.com/signup',{
       method:'POST',
       headers:{
         Accept:'application/form-data',

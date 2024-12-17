@@ -10,7 +10,7 @@ import NavBar from './Components/NavBar/NavBar'
 
 const App = () => {
 
-  const url = "https://shop-eco-backend.onrender.com";
+  const url = "https://e-commerce-web-backend-gmn1.onrender.com";
 
   return (
     <div className='app'>

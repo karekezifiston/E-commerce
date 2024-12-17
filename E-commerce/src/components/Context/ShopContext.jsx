@@ -9,7 +9,7 @@ const ShopContextProvider = (props) => {
     const [product_list, setProductList] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // Define isLoading state
 
-    const url = "https://shop-eco-backend.onrender.com";
+    const url = "https://e-commerce-web-backend-gmn1.onrender.com";
 
     const addToCart = async (itemId) => {
         if (!cartItems[itemId]) {

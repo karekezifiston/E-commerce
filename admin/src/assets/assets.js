@@ -14,4 +14,4 @@ export const assets ={
     parcel_icon
 }
 
-export const url = 'https://shop-eco-backend.onrender.com'
+export const url = 'https://e-commerce-web-backend-gmn1.onrender.com'
