@@ -2,7 +2,7 @@ import express from "express"
 import { addProduct,listProduct,removeProduct } from "../controllers/productController.js"
 import multer from "multer"
 
-const productRouter =express.Router()
+const productRouter =express.Router();
 
 // Image Storage Engine
 const storage =multer.diskStorage({
