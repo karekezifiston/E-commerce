@@ -1,41 +1,31 @@
-import express from "express";
-import multer from "multer";
-import { addProduct, listProduct, removeProduct } from "../controllers/productController.js";
+import express from "express"
+import { addProduct,listProduct,removeProduct } from "../controllers/productController.js"
+import multer from "multer"
 
-const productRouter = express.Router();
+const productRouter =express.Router();
 
 // Image Storage Engine
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    const uploadDir = path.join(__dirname, '../uploads');
-    if (!fs.existsSync(uploadDir)) {
-      fs.mkdirSync(uploadDir);
+const storage =multer.diskStorage({
+    destination:"uploads",
+    filename:(req,file,cb)=>{
+       return cb(null,`${Date.now()}${file.originalname}`)
     }
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
+})
 
-// File filter for image types (optional)
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    const fileTypes = /jpeg|jpg|png|gif/;
-    const mimeType = fileTypes.test(file.mimetype);
-    const extname = fileTypes.test(path.extname(file.originalname).toLowerCase());
+const upload =multer({storage:storage})
 
-    if (mimeType && extname) {
-      return cb(null, true); // accept file
-    }
-    cb(new Error('Invalid file type! Only image files are allowed.'));
-  },
-});
+ 
+productRouter.post("/add",upload.single("image"),addProduct)
+productRouter.get("/list",listProduct)
+productRouter.post("/remove",removeProduct);
 
-// Routes
-productRouter.post("/add", upload.single("image"), addProduct);
-productRouter.get("/list", listProduct);
-productRouter.post("/remove", removeProduct);
 
-export default productRouter;
+
+
+
+
+
+
+
+
+export default productRouter; 
