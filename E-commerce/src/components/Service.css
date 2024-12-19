@@ -11,6 +11,10 @@
 }
 .ser{
     color: rgba(0, 0, 0, 0.601);
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2.25rem;
+    text-transform: uppercase;
+    color:rgba(0, 0, 0, 0.703);
 }
 .cat{
     color: rgba(0, 0, 0, 0.601);
@@ -50,9 +54,7 @@
 .yego{
     display:none;
 }
-.men h2, .kids h2{
-    margin-left:2rem;
-}
+
 .women-p{
     margin-right:2rem;
 }

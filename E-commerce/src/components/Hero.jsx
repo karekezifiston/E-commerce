@@ -16,7 +16,7 @@ const Hero = () => {
   return (
     <div className="hero">
       <div className="title-trend">
-        <h1>Our Trends</h1>
+        <h1 className='ser'>Our Trends</h1>
       </div>
       <div className="product-items">
         {bestSeller.map((item, index) => (

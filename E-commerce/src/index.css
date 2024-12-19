@@ -9,6 +9,7 @@
 body,html{
  scroll-behavior: smooth; 
 }
+
 .wait{
   min-height:60vh;
   display: grid;
