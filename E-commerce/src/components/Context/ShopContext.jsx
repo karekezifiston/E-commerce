@@ -82,9 +82,10 @@ const ShopContextProvider = (props) => {
     // If products are still loading, show loading indicator
     if (isLoading) {
         return (
-            <div className='wait'>
-                <div className='rotate'></div>
-            </div>
+         <div className='wait'>
+        <div className='rotate'></div>
+        <p className='loading-text'>Free server life 😅 please give it a second to get ready!</p>
+       </div>
         );
     }
 
