@@ -11,8 +11,11 @@ body,html{
 }
 
 .wait{
-  min-height:60vh;
-  display: grid;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .wait .rotate{
   width:50px;
