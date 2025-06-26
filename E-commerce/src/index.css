@@ -3,11 +3,13 @@
 *{
   padding:0;
   margin:0;
-  /* font-family:sans-serif; */
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   box-sizing: border-box;
 }
 body,html{
  scroll-behavior: smooth; 
+ font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
 }
 
 .wait{
