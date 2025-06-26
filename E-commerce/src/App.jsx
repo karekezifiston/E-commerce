@@ -16,7 +16,7 @@ import kids_banner from './components/Assets/banner-kids.png';
 const Loading = () => (
   <div className='wait'>
     <div className='rotate'>
-      <p></p>
+      <p>Free server life 😅 please give it a second to get ready!</p>
     </div>
   </div>
 );
