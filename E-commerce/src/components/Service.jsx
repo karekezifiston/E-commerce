@@ -27,7 +27,7 @@ const Service = () => {
             </div>
             </Link>
             <div className='hhh'>
-            <p className='p-men1'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
+            <p className='p-men1'>Explore timeless men’s style  from sharp tailoring to rugged essentials. Whether it’s bold jackets, classic shirts, or laid-back streetwear, every piece speaks confidence and function. Designed for the modern man who values comfort, quality, and effortless cool.</p>
             <div className='btns mens-btn'>
             <Link to="/mens" className='linkk'><p>Shop</p></Link>
             <Link to="/mens" className='aaaa' href=""><hr className='aaa'/></Link>
@@ -42,7 +42,7 @@ const Service = () => {
            <div className='lllk rw'> 
            <Link to="/womens" className='link-cat lll rw' href="">
             <div className='par-btn'>
-            <p className='p-men2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
+            <p className='p-men2'>Celebrate feminine elegance and bold expression  from flowing dresses to chic blazers, every piece is crafted to empower. Whether it’s everyday comfort or standout fashion, discover styles that reflect your grace, strength, and individuality.</p>
             <div className='btns btn-women'>
             <Link to="/womens" className='linkk'><p>Shop</p></Link>
             <Link to="/womens" className='aaaa' href=""><hr className='aaa ab'/></Link>
@@ -53,7 +53,7 @@ const Service = () => {
             <img src={women} className='top-img' alt="" />
             </div>
             <div className='par-btn2'>
-            <p className='p-men2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere accusamus nihil reiciendis, a error minus, autem nostrum, et ratione esse possimus recusandae? Repudiandae commodi eveniet delectus et non minima quo!</p>
+            <p className='p-men2'>Bright, playful, and built for adventure — discover styles made for growing imaginations. From cozy everyday outfits to colorful statement pieces, each look is designed for comfort, fun, and freedom to be a kid.</p>
             <div className='yego btns-yego '>
             <Link to="/womens" className='linkk'><p>Shop</p></Link>
             <Link to="/womens" className='aaaa' href=""><hr className='aaa ab'/></Link>
