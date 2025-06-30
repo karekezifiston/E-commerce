@@ -84,7 +84,7 @@ const ShopContextProvider = (props) => {
         return (
          <div className='wait'>
         <div className='rotate'></div>
-        <p className='loading-text'>Free server life 😅 please give it a second to get ready!</p>
+        <p className='loading-text'>I used a free server on this project , so it might take a few seconds to wake up. Thanks for your patience!</p>
        </div>
         );
     }
